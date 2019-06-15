@@ -20,6 +20,8 @@ export (int) var blinkRadius=100
 var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
 
 func _ready():
+	OS.window_size*=2
+	self.add_to_group("Player")
 	set_physics_process(true)
 
 func _physics_process(delta):
