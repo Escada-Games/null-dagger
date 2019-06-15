@@ -1,21 +1,24 @@
 extends KinematicBody2D
 
 var vectorVelocity=Vector2()
-const horizontalSpeed=375
+const horizontalSpeed=175
 
 const jumpForce=275
 var numberOfJumps=0
 const maxNumberOfJumps=1
 
-var numberOfGlitches=0
-const maxNumberOfGlitches=1
+var jumpBuffer=0
+var maximumJumpBuffer=10
+
+var jumpPressBuffer=0
+var maximumJumpPressBuffer=5
 
 var gravity=0
 var realGravity=0
-var gravityHolding=12
-var gravityNormal=15
+var gravityHolding=13
+var gravityNormal=17
 
-export (int) var blinkRadius=100
+export (int) var blinkRadius=25
 var daggerCount=1
 
 var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
@@ -27,27 +30,33 @@ func _ready():
 	set_physics_process(true)
 
 func _physics_process(delta):
+	jumpBuffer+=1
+	jumpPressBuffer+=1
+	
 	gravity=gravityHolding if Input.is_action_pressed("ui_jump") else gravityNormal
 	realGravity=lerp(realGravity,gravity,0.25)
 	
 	if self.is_on_floor():
+		jumpBuffer=0
 		numberOfJumps=0
-		numberOfGlitches=0
 	
 	var inputDirection=Vector2()
 	inputDirection.x=1 if Input.is_action_pressed("ui_right") else -1 if Input.is_action_pressed("ui_left") else 0
 	inputDirection.y=1 if Input.is_action_pressed("ui_down") else -1 if Input.is_action_pressed("ui_up") else 0
 	
-	$glitchAimArea.position=blinkRadius*(get_global_mouse_position()-self.global_position).normalized()
+	$glitchAim.position=blinkRadius*(get_global_mouse_position()-self.global_position).normalized()
 	
-	if Input.is_action_just_pressed("ui_jump") and numberOfJumps<maxNumberOfJumps:
+	if Input.is_action_just_pressed("ui_jump"):
+		jumpPressBuffer=0
+		
+	if jumpPressBuffer<maximumJumpPressBuffer and numberOfJumps<maxNumberOfJumps and jumpBuffer<maximumJumpBuffer:
 		vectorVelocity.y=-jumpForce
 		numberOfJumps+=1
 	
 	if Input.is_action_just_pressed("ui_lmb") and daggerCount>0:
 		var i=glitchDagger.instance()
-		i.global_position=self.global_position
-		i.direction=$glitchAimArea.position.normalized()
+		i.global_position=$glitchAim.global_position
+		i.direction=$glitchAim.position.normalized()
 		i.returnTo=self
 		i.add_collision_exception_with(self)
 		get_parent().add_child(i)
