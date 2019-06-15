@@ -13,12 +13,14 @@ func _ready():
 	
 func _physics_process(delta):
 	self.modulate.a-=delta/2
-	if self.modulate.a<0.05:self.queue_free()
+	if self.modulate.a<0.01:self.queue_free()
 
 "
 
 [node name="magentaGhost" type="Sprite"]
 modulate = Color( 0.639216, 0, 0.780392, 0.8 )
+z_index = 1000
+z_as_relative = false
 script = SubResource( 1 )
 
 [node name="twnMove" type="Tween" parent="."]

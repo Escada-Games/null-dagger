@@ -29,16 +29,10 @@ func glitch():
 
 func activate():
 	self.visible=true
-	$area2D.monitoring=true
 	self.set_collision_layer_bit(0,true)
 	self.set_collision_mask_bit(0,true)
 	
 func deactivate():
 	self.visible=false
-	$area2D.monitoring=false
 	self.set_collision_layer_bit(0,false)
 	self.set_collision_mask_bit(0,false)
-
-func _on_area2D_body_entered(body):
-	if body.is_in_group("Player"):
-		print("Spikes: Got player.")

@@ -16,8 +16,10 @@ var gravityHolding=12
 var gravityNormal=15
 
 export (int) var blinkRadius=100
+var daggerCount=1
 
 var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
+var glitchDagger=preload("res://scenes/glitchDagger/glitchDagger.tscn")
 
 func _ready():
 	OS.window_size*=2
@@ -36,26 +38,24 @@ func _physics_process(delta):
 	inputDirection.x=1 if Input.is_action_pressed("ui_right") else -1 if Input.is_action_pressed("ui_left") else 0
 	inputDirection.y=1 if Input.is_action_pressed("ui_down") else -1 if Input.is_action_pressed("ui_up") else 0
 	
-	$glitchAimArea.position=blinkRadius*inputDirection.normalized() if inputDirection!=Vector2() else $glitchAimArea.position
+	$glitchAimArea.position=blinkRadius*(get_global_mouse_position()-self.global_position).normalized()
 	
 	if Input.is_action_just_pressed("ui_jump") and numberOfJumps<maxNumberOfJumps:
 		vectorVelocity.y=-jumpForce
 		numberOfJumps+=1
-		
+	
+	if Input.is_action_just_pressed("ui_lmb") and daggerCount>0:
+		var i=glitchDagger.instance()
+		i.global_position=self.global_position
+		i.direction=$glitchAimArea.position.normalized()
+		i.returnTo=self
+		i.add_collision_exception_with(self)
+		get_parent().add_child(i)
+		daggerCount-=1
+	
 	vectorVelocity.x=lerp(vectorVelocity.x,horizontalSpeed*inputDirection.x,0.1)
 	vectorVelocity.y+=realGravity
 	
-	if Input.is_action_just_pressed("ui_glitch") and numberOfGlitches<maxNumberOfGlitches and $glitchAimArea.get_overlapping_bodies().size()<1 and false: #Yeah, I'm desabling this entire block
-		var i=glitchAura.instance()
-		i.global_position=self.global_position
-		get_parent().add_child(i)
-		
-		self.global_position=$glitchAimArea.global_position
-		numberOfGlitches+=1
-		
-		vectorVelocity.y=0 if vectorVelocity.y<0 else vectorVelocity.y
-	
 	vectorVelocity=move_and_slide(vectorVelocity,Vector2(0,-1))
 	
-func glitch():
-	print("Player: I doesn't glitch.")
+func glitch():pass

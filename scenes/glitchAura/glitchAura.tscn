@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/glitchAura/glitchAura.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 100.0
+radius = 66.0
 
 [node name="glitchAura" type="Area2D"]
 priority = 128.0
