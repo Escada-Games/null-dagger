@@ -1,17 +1,18 @@
 extends KinematicBody2D
 var direction=Vector2(1,0)
 var vectorVelocity=Vector2()
-var gravity=7.5
+var gravity=3.5
 var state="stateMoving"
 var returnTo
 var returnSpeed=0
 const daggerSpeed=650
 const daggerStartingReturnSpeed=800 #I know this is a mess sorry
 const targetReturnSpeed=800
-#var glitchAura=preload("res://scenes/glitchAuraAlt/glitchAuraAlt.tscn")
 var unglitchPosition=Vector2()
 var bodiesToUnglitch=[]
-
+var sfxGlitch=preload("res://scenes/sfxGlitch/glitchSFX.tscn")
+var sfxUnglitch=preload("res://scenes/sfxUnglitch/unglitchSFX.tscn")
+var t=0
 func _ready():
 	set_physics_process(true)
 	vectorVelocity=direction*daggerSpeed
@@ -21,17 +22,20 @@ func _physics_process(delta):
 		self.rotation=vectorVelocity.angle()
 		vectorVelocity=move_and_slide(vectorVelocity+Vector2(0,gravity),Vector2(0,-1))
 	elif self.state=="stateStill":
+		t+=delta
+		$shaderSprite.material.set_shader_param("aberrationAmountX",0.005+0.025*abs(sin(2*PI*rand_range(0.125,0.99)*t)*sin(2*PI*rand_range(33.33,66.66)*t)))
+		$shaderSprite.material.set_shader_param("aberrationAmountY",0.001+0.020*abs(sin(2*PI*rand_range(0.125,0.99)*t)*sin(2*PI*rand_range(10.00,25.00)*t)))
 		if Input.is_action_just_pressed("ui_rmb"):
 			unglitchAura()
-#			var i=glitchAura.instance()
-#			i.global_position=unglitchPosition
-#			get_parent().add_child(i)
 			self.state="stateReturning"
 			vectorVelocity=direction*daggerStartingReturnSpeed
 			$collisionShape2D.disabled=true
 			$twnReturnSpeed.interpolate_property(self,"returnSpeed",0,targetReturnSpeed,0.4,Tween.TRANS_CIRC,Tween.EASE_OUT)
 			$twnReturnSpeed.start()
 	elif self.state=="stateReturning":
+		$shaderSprite.material.set_shader_param("aberrationAmountX",0.95*$shaderSprite.material.get_shader_param("aberrationAmountX"))
+		$shaderSprite.material.set_shader_param("aberrationAmountY",0.95*$shaderSprite.material.get_shader_param("aberrationAmountY"))
+		
 		self.rotation=vectorVelocity.angle()
 		direction=(returnTo.global_position-self.global_position).normalized()
 		vectorVelocity.x=lerp(vectorVelocity.x,direction.x*returnSpeed,0.1)
@@ -42,21 +46,19 @@ func _on_area2D_body_entered(body):
 	if body.is_in_group("Solid") and self.state=="stateMoving":
 		self.state="stateStill"
 		glitchAura()
-#		var i=glitchAura.instance()
-#		i.global_position=self.global_position
-#		unglitchPosition=self.global_position
-#		get_parent().add_child(i)
 	elif body.is_in_group("Player") and self.state=="stateReturning":
 		body.daggerCount+=1
 		self.queue_free()
 
 func glitch():pass
+
 func glitchAura():
+	get_parent().add_child(sfxGlitch.instance())
 	for body in $glitchAura.get_overlapping_bodies():
 		bodiesToUnglitch.append(body)
 		body.glitch()
 func unglitchAura():
+	get_parent().add_child(sfxUnglitch.instance())
 	for body in bodiesToUnglitch:
 		body.glitch()
 	bodiesToUnglitch=[]
-	

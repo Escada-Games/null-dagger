@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/sfx/Reappear.wav" type="AudioStream" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AudioStreamPlayer
+func _ready():
+	randomize()
+	self.pitch_scale=rand_range(0.75,1.25)
+func _on_glitchSFX_finished():self.queue_free()
+"
+
+[node name="unglitchSFX" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -10.0
+autoplay = true
+bus = "sfx"
+script = SubResource( 1 )
+[connection signal="finished" from="." to="." method="_on_glitchSFX_finished"]
