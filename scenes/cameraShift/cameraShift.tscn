@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+export (Vector2) var newOffset=Vector2()
+export (float) var tweenDuration=1
+func _ready():pass
+func _on_cameraShift_body_entered(body):
+	if body.is_in_group(\"Player\"):
+		body.get_node(\"twnCamera\").interpolate_property(body.get_node(\"camera2D\"),\"offset\",body.get_node(\"camera2D\").offset,newOffset,tweenDuration,Tween.TRANS_EXPO,Tween.EASE_OUT)
+		body.get_node(\"twnCamera\").start()
+		self.queue_free()"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 165 )
+
+[node name="cameraShift" type="Area2D"]
+position = Vector2( 2017, 2055 )
+script = SubResource( 1 )
+newOffset = Vector2( 0, 60 )
+tweenDuration = 2.5
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_cameraShift_body_entered"]
