@@ -8,12 +8,6 @@ var spriteProperties=[	Texture.new(),	#Texture
 ]
 
 func _ready():
-	for node in get_children():
-		node.get_node('sprite').scale=self.spriteProperties[1]
-		node.get_node('sprite').vframes=self.spriteProperties[2]
-		node.get_node('sprite').hframes=self.spriteProperties[3]
-		node.get_node('sprite').frame=self.spriteProperties[4]
-	
 	if self.mode==0:
 		$zero.activate()
 		$one.deactivate()

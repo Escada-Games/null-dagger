@@ -38,7 +38,8 @@ position = Vector2( 3, 0 )
 shape = SubResource( 4 )
 
 [node name="glitchAura" type="Area2D" parent="."]
-position = Vector2( 16, 0 )
+position = Vector2( 11, 0 )
+priority = 128.0
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="glitchAura"]
 shape = SubResource( 5 )

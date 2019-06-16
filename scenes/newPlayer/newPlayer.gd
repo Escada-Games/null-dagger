@@ -26,6 +26,7 @@ var glitchDagger=preload("res://scenes/glitchDagger/glitchDagger.tscn")
 
 func _ready():
 	OS.window_size*=2
+	self.add_to_group("Unglitchable")
 	self.add_to_group("Player")
 	set_physics_process(true)
 
