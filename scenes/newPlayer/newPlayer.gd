@@ -3,7 +3,7 @@ extends KinematicBody2D
 var vectorVelocity=Vector2()
 const horizontalSpeed=175
 
-const jumpForce=285
+const jumpForce=290
 var numberOfJumps=0
 const maxNumberOfJumps=1
 
@@ -15,7 +15,7 @@ var maximumJumpPressBuffer=5
 
 var gravity=0
 var realGravity=0
-var gravityHolding=13
+var gravityHolding=12
 var gravityNormal=17
 
 export (int) var blinkRadius=25

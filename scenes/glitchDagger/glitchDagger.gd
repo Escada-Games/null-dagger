@@ -7,7 +7,7 @@ var returnTo
 var returnSpeed=0
 const daggerSpeed=650
 const daggerStartingReturnSpeed=800 #I know this is a mess sorry
-const targetReturnSpeed=800
+const targetReturnSpeed=950
 var unglitchPosition=Vector2()
 var bodiesToUnglitch=[]
 var sfxGlitch=preload("res://scenes/sfxGlitch/glitchSFX.tscn")
