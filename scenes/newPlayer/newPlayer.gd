@@ -3,7 +3,7 @@ extends KinematicBody2D
 var vectorVelocity=Vector2()
 const horizontalSpeed=175
 
-const jumpForce=275
+const jumpForce=285
 var numberOfJumps=0
 const maxNumberOfJumps=1
 
@@ -23,6 +23,8 @@ var daggerCount=1
 
 var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
 var glitchDagger=preload("res://scenes/glitchDagger/glitchDagger.tscn")
+
+var checkpoint
 
 func _ready():
 	OS.window_size*=2
@@ -62,6 +64,10 @@ func _physics_process(delta):
 		i.add_collision_exception_with(self)
 		get_parent().add_child(i)
 		daggerCount-=1
+	
+	if Input.is_action_just_pressed("ui_die"):
+		self.vectorVelocity=Vector2()
+		self.global_position=checkpoint.global_position+Vector2(0,-16)
 	
 	vectorVelocity.x=lerp(vectorVelocity.x,horizontalSpeed*inputDirection.x,0.1)
 	vectorVelocity.y+=realGravity

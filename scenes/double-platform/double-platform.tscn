@@ -2,10 +2,10 @@
 
 [ext_resource path="res://scenes/plant-mushroom/plant-mushroom.gd" type="Script" id=1]
 [ext_resource path="res://scenes/genericPlatformAlt/genericPlatformAlt.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://resources/AssetsTst.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 7 )
+extents = Vector2( 8, 4 )
 
 [node name="double-platform" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,12 +14,14 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="zero"]
-position = Vector2( 0, 4.76837e-07 )
-scale = Vector2( 0.25, -0.25 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
+vframes = 5
+hframes = 5
+frame = 9
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="zero"]
-position = Vector2( 0, 1 )
 rotation = 3.14159
 shape = SubResource( 1 )
 one_way_collision = true
@@ -30,12 +32,13 @@ one_way_collision = true
 script = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="one"]
-position = Vector2( 0, 4.76837e-07 )
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
+vframes = 5
+hframes = 5
+frame = 9
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="one"]
-position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 one_way_collision = true
 

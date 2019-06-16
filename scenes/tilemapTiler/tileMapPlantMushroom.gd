@@ -7,6 +7,10 @@ var tilemapTexture=self.tile_set.tile_get_texture(0)
 var plantMushroom=preload("res://scenes/plant-mushroom/plant-mushroom.tscn")
 var doublePlatform=preload("res://scenes/double-platform/double-platform.tscn")
 var mirror=preload("res://scenes/mirror/mirror.tscn")
+var checkpointSolid=preload("res://scenes/checkpointSolid/checkpoint-solid.tscn")
+var key=preload("res://scenes/key/key.tscn")
+var glitchedKey=preload("res://scenes/glitchedKey/glitchedKey.tscn")
+var lockSolid=preload("res://scenes/lock-solid/lock-solid.tscn")
 
 func _ready():
 	print('Tilemap: Beginning autotile...')
@@ -28,6 +32,28 @@ func _ready():
 					var i=mirror.instance()
 					i.global_position=self.map_to_world(Vector2(x,y))
 					get_parent().call_deferred("add_child",i)
-				
+				elif tileIndex in [5]:
+					var i=checkpointSolid.instance()
+					i.mode=0
+					i.global_position=self.map_to_world(Vector2(x,y))
+					get_parent().call_deferred("add_child",i)
+				elif tileIndex in [6]:
+					var i=key.instance()
+					i.global_position=self.map_to_world(Vector2(x,y))
+					get_parent().call_deferred("add_child",i)
+				elif tileIndex in [7]:
+					var i=glitchedKey.instance()
+					i.global_position=self.map_to_world(Vector2(x,y))
+					get_parent().call_deferred("add_child",i)
+				elif tileIndex in [8]:
+					var i=lockSolid.instance()
+					i.mode=0
+					i.global_position=self.map_to_world(Vector2(x,y))
+					get_parent().call_deferred("add_child",i)
+				elif tileIndex in [9]:
+					var i=lockSolid.instance()
+					i.mode=1
+					i.global_position=self.map_to_world(Vector2(x,y))
+					get_parent().call_deferred("add_child",i)
 			
 	self.queue_free()

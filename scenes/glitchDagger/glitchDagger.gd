@@ -12,6 +12,7 @@ var unglitchPosition=Vector2()
 var bodiesToUnglitch=[]
 var sfxGlitch=preload("res://scenes/sfxGlitch/glitchSFX.tscn")
 var sfxUnglitch=preload("res://scenes/sfxUnglitch/unglitchSFX.tscn")
+var spriteTrail=preload("res://scenes/spriteTrail/spriteTrail.tscn")
 var t=0
 func _ready():
 	self.add_to_group("glitchDagger")
@@ -67,3 +68,15 @@ func unglitchAura():
 	for body in bodiesToUnglitch:
 		body.glitch()
 	bodiesToUnglitch=[]
+
+func _on_tmrSpriteTrail_timeout():
+	if self.state in ["stateMoving","stateReturning"]:
+		var i=spriteTrail.instance()
+		i.texture=$sprite.texture
+		i.vframes=$sprite.vframes
+		i.hframes=$sprite.hframes
+		i.frame=$sprite.frame
+		i.scale=$sprite.scale
+		i.global_position=$sprite.global_position+Vector2(rand_range(-2.5,2.5),rand_range(-2.5,2.5))
+		i.global_rotation=$sprite.global_rotation*rand_range(0.95,1.05)
+		get_parent().add_child(i)

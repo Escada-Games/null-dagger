@@ -13,7 +13,7 @@ uniform float aberrationAmountY: hint_range(0,1);
 void fragment() {
 	vec2 uv = SCREEN_UV;
 	COLOR.r=texture(SCREEN_TEXTURE, uv - vec2(aberrationAmountX,aberrationAmountY)).r;
-	COLOR.g=texture(SCREEN_TEXTURE, uv).g;
+	COLOR.g=texture(SCREEN_TEXTURE, uv - 0.1*sin(TIME)*vec2(aberrationAmountX,aberrationAmountY)).g;
 	COLOR.b=texture(SCREEN_TEXTURE, uv + vec2(aberrationAmountX,aberrationAmountY)).b;
 	COLOR.a=texture(TEXTURE, UV).a*texture(mask_texture,UV).a;
 //	COLOR.r=0.0;COLOR.g=0.0;COLOR.b=0.0;

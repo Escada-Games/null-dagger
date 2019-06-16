@@ -1,52 +1,60 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/glitchDagger/glitchDagger.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://resources/AssetsTst.png" type="Texture" id=2]
 [ext_resource path="res://resources/shaderChromatic.tres" type="Material" id=3]
 [ext_resource path="res://resources/circleForShader.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 3 )
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 14, 4 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 4 )
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=3]
 radius = 25.0
 
 [node name="glitchDagger" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
 [node name="auraPosition" type="Position2D" parent="."]
-position = Vector2( 16, 0 )
+position = Vector2( 7, 0 )
 
 [node name="twnReturnSpeed" type="Tween" parent="."]
 
-[node name="sprite" type="Sprite" parent="."]
-position = Vector2( 3.5, -1.19209e-07 )
-scale = Vector2( 0.390625, 0.125 )
-texture = ExtResource( 2 )
-
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 7, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="area2D" type="Area2D" parent="."]
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="area2D"]
-position = Vector2( 3, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="glitchAura" type="Area2D" parent="."]
 position = Vector2( 11, 0 )
 priority = 128.0
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="glitchAura"]
-shape = SubResource( 5 )
+position = Vector2( -5, 0 )
+shape = SubResource( 3 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( -4.76837e-07, 5.68434e-15 )
+rotation = 1.5708
+scale = Vector2( 1.5, 2.5 )
+texture = ExtResource( 2 )
+vframes = 5
+hframes = 5
+frame = 13
 
 [node name="shaderSprite" type="Sprite" parent="."]
 material = ExtResource( 3 )
-position = Vector2( 16, -3.8147e-06 )
+position = Vector2( 16, -4.54747e-13 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
+
+[node name="tmrSpriteTrail" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
 [connection signal="body_entered" from="area2D" to="." method="_on_area2D_body_entered"]
+[connection signal="timeout" from="tmrSpriteTrail" to="." method="_on_tmrSpriteTrail_timeout"]

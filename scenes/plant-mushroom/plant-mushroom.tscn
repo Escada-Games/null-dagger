@@ -11,6 +11,7 @@ script = ExtResource( 1 )
 editor/display_folded = true
 
 [node name="one" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
 
 [editable path="zero"]
 
