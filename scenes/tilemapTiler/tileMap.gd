@@ -1,6 +1,6 @@
 extends TileMap
 #Reusing Diver Down's autotiling code here, with some...adaptations
-var grid_size=Vector2(250,160)#global.resolution/global.tileSize#Vector2(25,16)
+var grid_size=Vector2(1000,1000)#global.resolution/global.tileSize#Vector2(25,16)
 var North = 1; var West = 2; var East = 4; var South = 8
 
 var tilemapTexture=self.tile_set.tile_get_texture(0)

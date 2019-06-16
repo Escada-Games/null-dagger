@@ -1,6 +1,6 @@
 extends TileMap
 #Reusing Diver Down's autotiling code here, with some...adaptations
-var grid_size=Vector2(250,160)#global.resolution/global.tileSize#Vector2(25,16)
+var grid_size=Vector2(1000,1000)#global.resolution/global.tileSize#Vector2(25,16)
 var North = 1; var West = 2; var East = 4; var South = 8
 
 var tilemapTexture=self.tile_set.tile_get_texture(0)
@@ -11,7 +11,7 @@ var checkpointSolid=preload("res://scenes/checkpointSolid/checkpoint-solid.tscn"
 var key=preload("res://scenes/key/key.tscn")
 var glitchedKey=preload("res://scenes/glitchedKey/glitchedKey.tscn")
 var lockSolid=preload("res://scenes/lock-solid/lock-solid.tscn")
-
+var glitchDagger=preload("res://scenes/glitchDaggerItem/glitchDaggerItem.tscn")
 func _ready():
 	print('Tilemap: Beginning autotile...')
 	for x in range(-1,grid_size.x):
@@ -58,6 +58,10 @@ func _ready():
 				elif tileIndex in [10]:
 					var i=checkpointSolid.instance()
 					i.mode=1
+					i.global_position=self.map_to_world(Vector2(x,y))
+					get_parent().call_deferred("add_child",i)
+				elif tileIndex in [13]:
+					var i=glitchDagger.instance()
 					i.global_position=self.map_to_world(Vector2(x,y))
 					get_parent().call_deferred("add_child",i)
 			
