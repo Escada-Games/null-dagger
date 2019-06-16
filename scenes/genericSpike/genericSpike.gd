@@ -42,3 +42,4 @@ func deactivate():
 func _on_area2D_body_entered(body):
 	if body.is_in_group("Player"):
 		print("Spikes: Got player.")
+		body.die()

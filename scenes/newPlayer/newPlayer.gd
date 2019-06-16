@@ -24,12 +24,18 @@ var daggerCount=1
 var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
 var glitchDagger=preload("res://scenes/glitchDagger/glitchDagger.tscn")
 
+var spawnCheckpoint=preload("res://scenes/checkpoint/checkpoint.tscn")
 var checkpoint
 
 func _ready():
 	OS.window_size*=2
 	self.add_to_group("Unglitchable")
 	self.add_to_group("Player")
+	var i=spawnCheckpoint.instance()
+	i.global_position=self.global_position
+	i.visible=false
+	checkpoint=i
+	get_parent().add_child(i)
 	set_physics_process(true)
 
 func _physics_process(delta):
@@ -65,9 +71,8 @@ func _physics_process(delta):
 		get_parent().add_child(i)
 		daggerCount-=1
 	
-	if Input.is_action_just_pressed("ui_die"):
-		self.vectorVelocity=Vector2()
-		self.global_position=checkpoint.global_position+Vector2(0,-16)
+	if Input.is_action_just_pressed("ui_die"): self.die()
+
 	
 	vectorVelocity.x=lerp(vectorVelocity.x,horizontalSpeed*inputDirection.x,0.1)
 	vectorVelocity.y+=realGravity
@@ -75,3 +80,6 @@ func _physics_process(delta):
 	vectorVelocity=move_and_slide(vectorVelocity,Vector2(0,-1))
 	
 func glitch():pass
+func die():
+	self.vectorVelocity=Vector2()
+	self.global_position=checkpoint.global_position+Vector2(0,-16)

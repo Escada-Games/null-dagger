@@ -55,5 +55,10 @@ func _ready():
 					i.mode=1
 					i.global_position=self.map_to_world(Vector2(x,y))
 					get_parent().call_deferred("add_child",i)
+				elif tileIndex in [10]:
+					var i=checkpointSolid.instance()
+					i.mode=1
+					i.global_position=self.map_to_world(Vector2(x,y))
+					get_parent().call_deferred("add_child",i)
 			
 	self.queue_free()
