@@ -19,6 +19,7 @@ func _on_key_body_entered(body):
 	if body.is_in_group("Player"):
 		self.state="stateFollow"
 		follow=body
+		targetPosition=follow.global_position
 
 func _on_range_body_entered(body):
 	if self.state=="stateFollow" and body.is_in_group("Lock"):

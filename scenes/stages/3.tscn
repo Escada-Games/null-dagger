@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
+[ext_resource path="res://resources/tilesets/debugTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/tilemapTiler/tileMap.gd" type="Script" id=3]
+[ext_resource path="res://resources/tilesets/debugTilesetSpikes.tres" type="TileSet" id=4]
+[ext_resource path="res://scenes/tilemapTiler/tileMapSpike.gd" type="Script" id=5]
+[ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=6]
+[ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=7]
+[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=9]
+
+[node name="1" type="Node2D"]
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="tileMapBackground" type="TileMap" parent="objects"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="tileMap" type="TileMap" parent="objects"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 262138, 0, 0, 327673, 0, 0, 327675, 0, 0, 393212, 0, 0, 458749, 0, 0, 458750, 0, 0, 524287, 0, 0, 524288, 0, 0, 589825, 0, 0, 655362, 0, 0, 655388, 0, 0, 720898, 0, 0, 720923, 0, 0, 720925, 0, 0, 720926, 0, 0, 786435, 0, 0, 786436, 0, 0, 786462, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851996, 0, 0, 851997, 0, 0, 851998, 0, 0, 917512, 0, 0, 917513, 0, 0, 917534, 0, 0, 983050, 0, 0, 983051, 0, 0, 983067, 0, 0, 983069, 0, 0, 983070, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048604, 0, 0, 1114112, 0, 0, 1114113, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114122, 0, 0, 1114123, 0, 0, 1114124, 0, 0, 1179661, 0, 0, 1179662, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0, 1179680, 0, 0, 1179681, 0, 0, 1179682, 0, 0, 1179683, 0, 0, 1179684, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="tileMapSpike" type="TileMap" parent="objects"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 5 )
+
+[node name="tileMapObjects" type="TileMap" parent="objects"]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 7 )
+
+[node name="mirrors" type="Node2D" parent="objects"]
+
+[node name="cameraShifts" type="Node2D" parent="objects"]
+
+[node name="platformSupports" type="Node2D" parent="objects"]
+
+[node name="door" parent="objects" instance=ExtResource( 8 )]
+position = Vector2( 327, 253 )
+
+[node name="player" parent="." instance=ExtResource( 9 )]
+position = Vector2( 374, 155 )
+
+[node name="camera2D" type="Camera2D" parent="player"]
+current = true
+limit_left = 0
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 12.0
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.5
+
+[node name="twnCamera" type="Tween" parent="player"]

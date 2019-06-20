@@ -15,7 +15,6 @@ func _on_cameraShift_body_entered(body):
 extents = Vector2( 10, 165 )
 
 [node name="cameraShift" type="Area2D"]
-position = Vector2( 2017, 2055 )
 script = SubResource( 1 )
 newOffset = Vector2( 0, 60 )
 tweenDuration = 2.5

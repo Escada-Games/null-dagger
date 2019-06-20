@@ -25,6 +25,8 @@ export (int) var blinkRadius=25
 var daggerCount=1
 var hasDagger=false
 
+var onDoor=false
+
 var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
 var glitchDagger=preload("res://scenes/glitchDagger/glitchDagger.tscn")
 
@@ -33,6 +35,7 @@ var checkpoint
 
 func _ready():
 #	OS.window_size*=2
+	self.hasDagger=global.hasDagger
 	$glitchAim.visible=false
 	self.add_to_group("Unglitchable")
 	self.add_to_group("Player")
@@ -73,7 +76,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_jump"):
 		jumpPressBuffer=0
 		
-	if jumpPressBuffer<maximumJumpPressBuffer and numberOfJumps<maxNumberOfJumps and jumpBuffer<maximumJumpBuffer:
+	if jumpPressBuffer<maximumJumpPressBuffer and numberOfJumps<maxNumberOfJumps and jumpBuffer<maximumJumpBuffer and not onDoor:
 		vectorVelocity.y=-jumpForce
 		numberOfJumps+=1
 	

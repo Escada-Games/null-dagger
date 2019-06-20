@@ -1,11 +1,36 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/glitchDaggerItem/glitchDaggerItem.gd" type="Script" id=1]
 [ext_resource path="res://scenes/key/animKey.tres" type="Animation" id=2]
 [ext_resource path="res://resources/AssetsTst.png" type="Texture" id=3]
+[ext_resource path="res://resources/circleForShader2.png" type="Texture" id=4]
+[ext_resource path="res://resources/circleForShader.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9, 9.85892 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+//render_mode unshaded;
+
+uniform sampler2D mask_texture;
+uniform float aberrationAmountX: hint_range(0,1);
+uniform float aberrationAmountY: hint_range(0,1);
+
+void fragment() {
+	vec2 uv = SCREEN_UV;
+	COLOR.r=texture(SCREEN_TEXTURE, uv - vec2(aberrationAmountX,aberrationAmountY)).r;
+	COLOR.g=texture(SCREEN_TEXTURE, uv - 0.1*sin(TIME)*vec2(aberrationAmountX,aberrationAmountY)).g;
+	COLOR.b=texture(SCREEN_TEXTURE, uv + vec2(aberrationAmountX,aberrationAmountY)).b;
+	COLOR.a=texture(TEXTURE, UV).a*texture(mask_texture,UV).a;
+//	COLOR.r=0.0;COLOR.g=0.0;COLOR.b=0.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/aberrationAmountX = 0.5
+shader_param/aberrationAmountY = 0.5
+shader_param/mask_texture = ExtResource( 4 )
 
 [node name="glitchDaggerItem" type="Area2D"]
 script = ExtResource( 1 )
@@ -26,4 +51,8 @@ frame = 13
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -9.14108 )
 shape = SubResource( 1 )
+
+[node name="shaderSprite" type="Sprite" parent="."]
+material = SubResource( 3 )
+texture = ExtResource( 5 )
 [connection signal="body_entered" from="." to="." method="_on_key_body_entered"]
