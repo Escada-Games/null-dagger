@@ -11,7 +11,7 @@
 [ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=10]
 
-[node name="1" type="Node2D"]
+[node name="2" type="Node2D"]
 
 [node name="objects" type="Node2D" parent="."]
 

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://resources/circleForShader2.png" type="Texture" id=1]
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 //render_mode unshaded;
 
@@ -20,7 +20,7 @@ void fragment() {
 }"
 
 [resource]
-shader = SubResource( 2 )
+shader = SubResource( 1 )
 shader_param/aberrationAmountX = 0.0
 shader_param/aberrationAmountY = 0.0
 shader_param/mask_texture = ExtResource( 1 )
