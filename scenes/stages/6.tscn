@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/tilesets/debugTileset.tres" type="TileSet" id=2]
@@ -7,11 +7,12 @@
 [ext_resource path="res://scenes/tilemapTiler/tileMapSpike.gd" type="Script" id=5]
 [ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=6]
 [ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=7]
-[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/stages/7.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/door/door.gd" type="Script" id=10]
-[ext_resource path="res://icon.png" type="Texture" id=11]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/stages/7.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/door/door.gd" type="Script" id=11]
+[ext_resource path="res://icon.png" type="Texture" id=12]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=13]
 
 [node name="4" type="Node2D"]
 
@@ -49,21 +50,123 @@ script = ExtResource( 7 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
 
-[node name="door" parent="objects" instance=ExtResource( 8 )]
+[node name="support" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 600, 853 )
+
+[node name="support2" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 568, 853 )
+
+[node name="support3" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 504, 821 )
+
+[node name="support4" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 456, 821 )
+
+[node name="support5" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 392, 805 )
+
+[node name="support6" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 360, 805 )
+
+[node name="support7" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 568, 693 )
+
+[node name="support8" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 600, 693 )
+
+[node name="support9" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 648, 629 )
+
+[node name="support19" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 648, 500.5 )
+
+[node name="support10" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 680, 629 )
+
+[node name="support20" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 680, 500.5 )
+
+[node name="support11" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 488, 629 )
+
+[node name="support18" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 488, 500.5 )
+
+[node name="support12" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 520, 629 )
+
+[node name="support17" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 520, 500.5 )
+
+[node name="support13" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 568, 565 )
+
+[node name="support16" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 568, 436.5 )
+
+[node name="support22" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 392, 500.5 )
+
+[node name="support24" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 296, 484.5 )
+
+[node name="support25" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 200, 452.5 )
+
+[node name="support28" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 128, 420.5 )
+
+[node name="support29" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 176, 309 )
+
+[node name="support30" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 272, 277 )
+
+[node name="support31" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 368, 245 )
+
+[node name="support32" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 464, 213 )
+
+[node name="support33" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 560, 181 )
+
+[node name="support34" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 656, 133 )
+
+[node name="support35" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 752, 101 )
+
+[node name="support14" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 600, 565 )
+
+[node name="support15" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 600, 436.5 )
+
+[node name="support21" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 424, 500.5 )
+
+[node name="support23" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 328, 484.5 )
+
+[node name="support26" parent="objects/platformSupports" instance=ExtResource( 8 )]
+position = Vector2( 232, 452.5 )
+
+[node name="door" parent="objects" instance=ExtResource( 9 )]
 position = Vector2( 967, 216 )
-connectedStage = ExtResource( 9 )
+connectedStage = ExtResource( 10 )
 
 [node name="doorSpr" type="Area2D" parent="objects"]
 position = Vector2( 862, 207 )
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="sprite" type="Sprite" parent="objects/doorSpr"]
 position = Vector2( 3.8147e-06, 0.5 )
 scale = Vector2( 0.4375, 0.765625 )
 z_index = -1
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
-[node name="player" parent="." instance=ExtResource( 12 )]
+[node name="player" parent="." instance=ExtResource( 13 )]
 position = Vector2( 67, 309 )
 
 [node name="camera2D" type="Camera2D" parent="player"]

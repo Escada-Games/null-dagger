@@ -2,6 +2,8 @@ extends StaticBody2D
 var cyanGhost=preload("res://scenes/ghosts/cyanGhost.tscn")
 var magentaGhost=preload("res://scenes/ghosts/magentaGhost.tscn")
 func _ready():
+	for node in get_tree().get_nodes_in_group("Player"):
+		self.add_collision_exception_with(node)
 	self.add_to_group("Solid")
 func glitch():
 	get_parent().glitch()

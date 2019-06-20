@@ -18,9 +18,8 @@ script = SubResource( 1 )
 
 [node name="line2D" type="Line2D" parent="."]
 position = Vector2( 0, 3 )
-points = PoolVector2Array( 0, 0, 0, 448 )
+points = PoolVector2Array( 0, 0, 0, 800 )
 width = 2.0
-texture_mode = 1072822040
 sharp_limit = 1.0
 round_precision = 1
 
