@@ -52,7 +52,8 @@ func _on_area2D_body_entered(body):
 		call_deferred("glitchAura")
 		
 	if body.is_in_group("Player") and self.state=="stateReturning":
-		body.daggerCount+=1
+#		body.daggerCount+=1
+		body.getDagger()
 		self.queue_free()
 
 func glitch():pass

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/Props/rockWallBG.png" type="Texture" id=1]
+[ext_resource path="res://scenes/growingDiamond/growingDiamond.gd" type="Script" id=2]
+
+[node name="growingDiamond" type="Sprite"]
+modulate = Color( 0, 0, 0, 1 )
+rotation = 0.785398
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="twnScale" type="Tween" parent="."]
+[connection signal="tween_completed" from="twnScale" to="." method="_on_twnScale_tween_completed"]

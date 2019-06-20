@@ -12,6 +12,7 @@ var key=preload("res://scenes/key/key.tscn")
 var glitchedKey=preload("res://scenes/glitchedKey/glitchedKey.tscn")
 var lockSolid=preload("res://scenes/lock-solid/lock-solid.tscn")
 var glitchDagger=preload("res://scenes/glitchDaggerItem/glitchDaggerItem.tscn")
+var tallGrass=preload("res://scenes/tallGrass/tallGrass.tscn")
 func _ready():
 	print('Tilemap: Beginning autotile...')
 	for x in range(-1,grid_size.x):
@@ -62,6 +63,10 @@ func _ready():
 					get_parent().call_deferred("add_child",i)
 				elif tileIndex in [13]:
 					var i=glitchDagger.instance()
+					i.global_position=self.map_to_world(Vector2(x,y))
+					get_parent().call_deferred("add_child",i)
+				elif tileIndex in [14]:
+					var i=tallGrass.instance()
 					i.global_position=self.map_to_world(Vector2(x,y))
 					get_parent().call_deferred("add_child",i)
 			

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/tilesetMaker/tilesetMakerAlt.gd" type="Script" id=1]
+[ext_resource path="res://resources/Props/RockWall_Tile.png" type="Texture" id=2]
+
+[node name="tileset" type="Node2D"]
+position = Vector2( 8, 8 )
+script = ExtResource( 1 )
+texture = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )

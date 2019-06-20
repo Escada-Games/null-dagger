@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/Props/support_7x5.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+func _ready():
+#	print(self.scale.y*self.texture.get_height())
+	self.global_position.x-=8
+	self.global_position.y-=8
+	$leg.scale.y=$line2D.points[1].y"
+
+[node name="support" type="Sprite"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 1 )
+vframes = 2
+script = SubResource( 1 )
+
+[node name="line2D" type="Line2D" parent="."]
+position = Vector2( 0, 3 )
+points = PoolVector2Array( 0, 0, 0, 69 )
+width = 2.0
+texture_mode = 1072822040
+sharp_limit = 1.0
+round_precision = 1
+
+[node name="leg" type="Sprite" parent="."]
+position = Vector2( -7, 1 )
+z_index = -5
+texture = ExtResource( 1 )
+centered = false
+vframes = 2
+frame = 1

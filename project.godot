@@ -19,6 +19,10 @@ config/name="themeIsGlitch"
 run/main_scene="res://scenes/stage.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://scenes/global.gd"
+
 [display]
 
 window/size/width=512
