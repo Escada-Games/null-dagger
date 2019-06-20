@@ -45,6 +45,11 @@ func _physics_process(delta):
 		vectorVelocity.x=lerp(vectorVelocity.x,direction.x*returnSpeed,0.25)
 		vectorVelocity.y=lerp(vectorVelocity.y,direction.y*returnSpeed,0.2)
 		vectorVelocity=move_and_slide(vectorVelocity,Vector2(0,-1))
+		
+		for body in $area2D.get_overlapping_bodies():
+			if body.is_in_group("Player"):
+				body.getDagger()
+				self.queue_free()
 
 func _on_area2D_body_entered(body):
 	if body.is_in_group("Solid") and self.state=="stateMoving":

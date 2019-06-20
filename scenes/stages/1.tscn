@@ -107,8 +107,13 @@ script = ExtResource( 9 )
 [node name="cameraShifts" type="Node2D" parent="objects"]
 
 [node name="cameraShift" parent="objects/cameraShifts" instance=ExtResource( 10 )]
-position = Vector2( 730, 274 )
-rotation = -1.57079
+position = Vector2( 681, 127 )
+rotation = -2.87979
+
+[node name="cameraShift2" parent="objects/cameraShifts" instance=ExtResource( 10 )]
+position = Vector2( 594, 626 )
+rotation = -3.14159
+newOffset = Vector2( 0, 30 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
 editor/display_folded = true
@@ -179,7 +184,7 @@ limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 12.0
 drag_margin_left = 0.1
-drag_margin_top = 0.1
+drag_margin_top = 0.05
 drag_margin_right = 0.1
 drag_margin_bottom = 0.5
 

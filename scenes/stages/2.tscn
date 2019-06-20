@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/tilesets/debugTileset.tres" type="TileSet" id=2]
@@ -7,9 +7,11 @@
 [ext_resource path="res://scenes/tilemapTiler/tileMapSpike.gd" type="Script" id=5]
 [ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=6]
 [ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=7]
-[ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/cameraShift/cameraShift.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/stages/3.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=12]
 
 [node name="2" type="Node2D"]
 
@@ -38,26 +40,32 @@ script = ExtResource( 5 )
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 7143477, 2, 0, 7143478, 2, 0, 7143479, 2, 0, 7143480, 2, 0, 7143481, 2, 0, 7143482, 2, 0, 7143483, 2, 0, 7143484, 2, 0, 7143485, 2, 0, 7143486, 2, 0, 7143487, 2, 0, 7143488, 2, 0, 7143489, 2, 0, 7471163, 13, 0 )
+tile_data = PoolIntArray( 7143477, 2, 0, 7143478, 2, 0, 7143479, 2, 0, 7143480, 2, 0, 7143481, 2, 0, 7143482, 2, 0, 7143483, 2, 0, 7143484, 2, 0, 7143485, 2, 0, 7143486, 2, 0, 7143487, 2, 0, 7143488, 2, 0, 7143489, 2, 0, 7471163, 13, 0, 7798861, 5, 0 )
 script = ExtResource( 7 )
 
 [node name="mirrors" type="Node2D" parent="objects"]
 
 [node name="cameraShifts" type="Node2D" parent="objects"]
 
-[node name="platformSupports" type="Node2D" parent="objects"]
+[node name="cameraShift" parent="objects/cameraShifts" instance=ExtResource( 8 )]
+position = Vector2( 1239, 1887 )
+newOffset = Vector2( 30, 60 )
 
-[node name="support" parent="objects/platformSupports" instance=ExtResource( 8 )]
+[node name="platformSupports" type="Node2D" parent="objects"]
+editor/display_folded = true
+
+[node name="support" parent="objects/platformSupports" instance=ExtResource( 9 )]
 position = Vector2( 864, 1749 )
 
-[node name="support2" parent="objects/platformSupports" instance=ExtResource( 8 )]
+[node name="support2" parent="objects/platformSupports" instance=ExtResource( 9 )]
 position = Vector2( 1040, 1749 )
 
-[node name="door" parent="objects" instance=ExtResource( 9 )]
+[node name="door" parent="objects" instance=ExtResource( 10 )]
 position = Vector2( 1761, 1911 )
+connectedStage = ExtResource( 11 )
 
-[node name="player" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1322, 1911 )
+[node name="player" parent="." instance=ExtResource( 12 )]
+position = Vector2( 951, 409 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
 current = true

@@ -56,6 +56,11 @@ position = Vector2( 845, 330 )
 rotation = 0.261799
 newOffset = Vector2( 0, 80 )
 
+[node name="3" parent="objects/cameraShifts" instance=ExtResource( 8 )]
+position = Vector2( 830, 945 )
+rotation = 0.261799
+newOffset = Vector2( 0, 30 )
+
 [node name="platformSupports" type="Node2D" parent="objects"]
 
 [node name="doorSpr" type="Area2D" parent="objects"]
@@ -73,7 +78,7 @@ position = Vector2( 1289, 920 )
 connectedStage = ExtResource( 12 )
 
 [node name="player" parent="." instance=ExtResource( 13 )]
-position = Vector2( 806, 345 )
+position = Vector2( 194, 355 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
 current = true
