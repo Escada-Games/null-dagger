@@ -41,5 +41,7 @@ func deactivate():
 	
 func _on_area2D_body_entered(body):
 	if body.is_in_group("Player"):
+		if body.checkpoint!=self and $sprite.visible:
+			$sfx.play()
 		body.checkpoint=self
 

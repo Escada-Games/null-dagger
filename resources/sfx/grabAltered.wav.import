@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/grabAltered.wav-f9862e06697b729862acfdd8bf2741c2.sample"
+
+[deps]
+
+source_file="res://resources/sfx/grabAltered.wav"
+dest_files=[ "res://.import/grabAltered.wav-f9862e06697b729862acfdd8bf2741c2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

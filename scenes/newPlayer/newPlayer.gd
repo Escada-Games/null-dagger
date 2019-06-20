@@ -60,6 +60,10 @@ func _physics_process(delta):
 	realGravity=lerp(realGravity,gravity,0.25)
 	
 	if self.is_on_floor():
+		if numberOfJumps>0:
+			print('adsasd')
+			$sfxLanding.pitch_scale=rand_range(0.95,1.05)
+			$sfxLanding.play()
 		jumpBuffer=0
 		numberOfJumps=0
 	
@@ -77,6 +81,8 @@ func _physics_process(delta):
 		jumpPressBuffer=0
 		
 	if jumpPressBuffer<maximumJumpPressBuffer and numberOfJumps<maxNumberOfJumps and jumpBuffer<maximumJumpBuffer and not onDoor:
+		$sfxJump.pitch_scale=rand_range(0.95,1.05)
+		$sfxJump.play()
 		vectorVelocity.y=-jumpForce
 		numberOfJumps+=1
 	
@@ -128,6 +134,8 @@ func loseDagger():
 #		$sprite.visible=false
 
 func getDagger():
+	$sfxGrabbing.pitch_scale=rand_range(0.95,1.05)
+	$sfxGrabbing.play()
 	self.hasDagger=true
 	$sprite.visible=false
 	$spriteWithDagger.visible=true
