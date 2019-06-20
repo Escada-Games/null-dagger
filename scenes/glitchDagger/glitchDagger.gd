@@ -6,8 +6,8 @@ var state="stateMoving"
 var returnTo
 var returnSpeed=0
 const daggerSpeed=650
-const daggerStartingReturnSpeed=800 #I know this is a mess sorry
-const targetReturnSpeed=950
+const daggerStartingReturnSpeed=400 #I know this is a mess sorry
+const targetReturnSpeed=1250
 var unglitchPosition=Vector2()
 var bodiesToUnglitch=[]
 var sfxGlitch=preload("res://scenes/sfxGlitch/glitchSFX.tscn")
@@ -42,8 +42,8 @@ func _physics_process(delta):
 		
 		self.rotation=vectorVelocity.angle()
 		direction=(returnTo.global_position-self.global_position).normalized()
-		vectorVelocity.x=lerp(vectorVelocity.x,direction.x*returnSpeed,0.1)
-		vectorVelocity.y=lerp(vectorVelocity.y,direction.y*returnSpeed,0.05)
+		vectorVelocity.x=lerp(vectorVelocity.x,direction.x*returnSpeed,0.25)
+		vectorVelocity.y=lerp(vectorVelocity.y,direction.y*returnSpeed,0.2)
 		vectorVelocity=move_and_slide(vectorVelocity,Vector2(0,-1))
 
 func _on_area2D_body_entered(body):

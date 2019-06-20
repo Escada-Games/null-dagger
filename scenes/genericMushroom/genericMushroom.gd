@@ -42,4 +42,5 @@ func deactivate():
 func _on_area2D_body_entered(body):
 	if body.is_in_group("Player"):
 		$animationPlayer.play("squish")
+#		body.vectorVelocity-=(self.global_position-body.global_position).normalized()*1.5*body.jumpForce
 		body.vectorVelocity.y=-1.5*body.jumpForce
