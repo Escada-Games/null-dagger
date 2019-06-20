@@ -169,7 +169,7 @@ script = SubResource( 5 )
 shape = SubResource( 6 )
 
 [node name="player" parent="." instance=ExtResource( 12 )]
-position = Vector2( 466, 593 )
+position = Vector2( 141, 198 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
 current = true

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/newPlayer/newPlayer.gd" type="Script" id=1]
 [ext_resource path="res://resources/Char/charNoDaggerSpritesheet.png" type="Texture" id=2]
-[ext_resource path="res://resources/Char/charDaggerSpritesheet.png" type="Texture" id=3]
+[ext_resource path="res://resources/Char/charDaggerSpritesheetShaded.png" type="Texture" id=3]
 [ext_resource path="res://resources/Char/Char_SmearBug.png" type="Texture" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
 
@@ -162,6 +162,7 @@ anims/runCycle = SubResource( 4 )
 anims/walkcycle = SubResource( 5 )
 
 [node name="sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 2, -2.5 )
 texture = ExtResource( 2 )
 vframes = 4
@@ -169,7 +170,6 @@ hframes = 8
 frame = 26
 
 [node name="spriteWithDagger" type="Sprite" parent="."]
-visible = false
 position = Vector2( 2, -2.5 )
 texture = ExtResource( 3 )
 vframes = 4

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var vectorVelocity=Vector2()
-const horizontalSpeed=155
+const horizontalSpeed=145#155
 
 const jumpForce=290
 var numberOfJumps=0
