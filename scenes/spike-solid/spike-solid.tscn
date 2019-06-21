@@ -18,9 +18,6 @@ texture = ExtResource( 3 )
 [node name="one" parent="." instance=ExtResource( 4 )]
 visible = false
 
-[node name="sprite" parent="one" index="0"]
-modulate = Color( 1, 0.258824, 0, 1 )
-
 [editable path="zero"]
 
 [editable path="one"]
