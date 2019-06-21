@@ -15,6 +15,8 @@ func _physics_process(delta):
 
 func _on_key_body_entered(body):
 	if body.is_in_group("glitchDagger"):
+		$collisionShape2D.disabled=true
+		$sfx.play()
 		self.state="stateFollow"
 		follow=body.returnTo
 

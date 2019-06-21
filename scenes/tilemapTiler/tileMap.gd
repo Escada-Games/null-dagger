@@ -20,7 +20,7 @@ func _ready():
 					var tile_index = 0 + North * north_tile + West * west_tile + East * east_tile + South * south_tile
 					
 					var i=spikeSolid.instance()
-					i.global_position=self.map_to_world(Vector2(x,y))
+					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
 					i.mode=1
 					i.spriteProperties[0]=tilemapTexture
 					i.spriteProperties[1]=Vector2(1,1)

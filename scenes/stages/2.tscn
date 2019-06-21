@@ -85,7 +85,7 @@ position = Vector2( 1761, 1911 )
 connectedStage = ExtResource( 11 )
 
 [node name="altar" type="StaticBody2D" parent="objects"]
-position = Vector2( 944, 1859 )
+position = Vector2( 952, 1867 )
 script = ExtResource( 12 )
 
 [node name="sprite" type="Sprite" parent="objects/altar"]

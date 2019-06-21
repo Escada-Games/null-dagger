@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/glitchedKey/glitchedKey.gd" type="Script" id=1]
 [ext_resource path="res://scenes/key/animKey.tres" type="Animation" id=2]
 [ext_resource path="res://resources/AssetsTst.png" type="Texture" id=3]
+[ext_resource path="res://resources/sfx/checkpoint.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 7 )
@@ -32,5 +33,11 @@ shape = SubResource( 1 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="range"]
 shape = SubResource( 2 )
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -15.0
+pitch_scale = 3.5
+bus = "sfx"
 [connection signal="body_entered" from="." to="." method="_on_key_body_entered"]
 [connection signal="body_entered" from="range" to="." method="_on_range_body_entered"]

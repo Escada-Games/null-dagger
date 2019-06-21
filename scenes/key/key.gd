@@ -18,6 +18,8 @@ func _physics_process(delta):
 func _on_key_body_entered(body):
 	if body.is_in_group("Player"):
 		self.state="stateFollow"
+		$collisionShape2D.disabled=true
+		$sfx.play()
 		follow=body
 		targetPosition=follow.global_position
 
