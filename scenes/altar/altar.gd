@@ -5,7 +5,7 @@ func _ready():
 	self.add_to_group("Solid")
 func glitch():
 #	get_parent().glitch()
-	$sprite.frame=1
+	$sprite.frame=1 if $sprite.frame==0 else 0
 	
 	var i=cyanGhost.instance()
 	i.position=self.position

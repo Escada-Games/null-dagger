@@ -24,6 +24,16 @@ func _physics_process(delta):
 		direction=vectorVelocity.normalized()
 		self.rotation=vectorVelocity.angle()
 		vectorVelocity=move_and_slide(vectorVelocity+Vector2(0,gravity),Vector2(0,-1))
+		
+		if Input.is_action_just_pressed("ui_rmb"):
+			unglitchAura()
+			self.state="stateReturning"
+			vectorVelocity=direction*daggerStartingReturnSpeed
+			vectorVelocity=vectorVelocity.rotated(rand_range(PI/8,+PI/4)*abs(rand_range(-1,1)))
+			$collisionShape2D.disabled=true
+			$twnReturnSpeed.interpolate_property(self,"returnSpeed",0,targetReturnSpeed,0.4,Tween.TRANS_CIRC,Tween.EASE_OUT)
+			$twnReturnSpeed.start()
+			
 	elif self.state=="stateStill":
 		t+=delta
 		$shaderSprite.material.set_shader_param("aberrationAmountX",0.005+0.025*abs(sin(2*PI*rand_range(0.125,0.99)*t)*sin(2*PI*rand_range(33.33,66.66)*t)))

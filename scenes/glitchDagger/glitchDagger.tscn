@@ -6,10 +6,10 @@
 [ext_resource path="res://resources/circleForShader.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5, 3 )
+extents = Vector2( 5, 2 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 10, 4 )
+extents = Vector2( 8, 3 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 25.0
@@ -23,11 +23,13 @@ position = Vector2( 7, 0 )
 [node name="twnReturnSpeed" type="Tween" parent="."]
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3, 0 )
 shape = SubResource( 1 )
 
 [node name="area2D" type="Area2D" parent="."]
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="area2D"]
+position = Vector2( 3, 0 )
 shape = SubResource( 2 )
 
 [node name="glitchAura" type="Area2D" parent="."]
