@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/tilesets/debugTileset.tres" type="TileSet" id=2]
@@ -8,11 +8,10 @@
 [ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=6]
 [ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=7]
 [ext_resource path="res://scenes/cameraShift/cameraShift.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/door/door.gd" type="Script" id=9]
-[ext_resource path="res://icon.png" type="Texture" id=10]
-[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/stages/4.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/stages/4.tscn" type="PackedScene" id=10]
+[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=11]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=12]
 
 [node name="3" type="Node2D"]
 
@@ -63,21 +62,19 @@ newOffset = Vector2( 0, 30 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
 
-[node name="doorSpr" type="Area2D" parent="objects"]
-position = Vector2( 194, 359 )
-script = ExtResource( 9 )
-
-[node name="sprite" type="Sprite" parent="objects/doorSpr"]
-position = Vector2( 3.8147e-06, 0.5 )
-scale = Vector2( 0.4375, 0.765625 )
-z_index = -1
-texture = ExtResource( 10 )
-
-[node name="door" parent="objects" instance=ExtResource( 11 )]
+[node name="door" parent="objects" instance=ExtResource( 9 )]
 position = Vector2( 1289, 920 )
-connectedStage = ExtResource( 12 )
+connectedStage = ExtResource( 10 )
 
-[node name="player" parent="." instance=ExtResource( 13 )]
+[node name="doorSprite" type="Sprite" parent="objects"]
+position = Vector2( 194, 361 )
+scale = Vector2( 1.33333, 2 )
+z_index = -1
+texture = ExtResource( 11 )
+hframes = 2
+frame = 1
+
+[node name="player" parent="." instance=ExtResource( 12 )]
 position = Vector2( 194, 355 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
@@ -92,5 +89,3 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.5
 
 [node name="twnCamera" type="Tween" parent="player"]
-[connection signal="body_entered" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_entered"]
-[connection signal="body_exited" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_exited"]

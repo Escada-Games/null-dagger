@@ -11,9 +11,9 @@ func _ready():
 			i.global_position=Vector2(x,y)*OS.window_size/10
 			i.tweenDuration=self.tweenDuration
 			add_child(i)
-	yield(get_tree().create_timer(tweenDuration),"timeout")
+	yield(get_tree().create_timer(1.5*tweenDuration),"timeout")
 	get_tree().change_scene_to(scene)
 	for child in self.get_children():
 		child.shrink()
-	yield(get_tree().create_timer(tweenDuration),"timeout")
+	yield(get_tree().create_timer(1.5*tweenDuration),"timeout")
 	self.queue_free()

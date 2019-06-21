@@ -11,7 +11,7 @@
 [ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/stages/5.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/door/door.gd" type="Script" id=11]
-[ext_resource path="res://icon.png" type="Texture" id=12]
+[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=12]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=13]
 
 [node name="4" type="Node2D"]
@@ -104,9 +104,11 @@ position = Vector2( 337, 1660 )
 script = ExtResource( 11 )
 
 [node name="sprite" type="Sprite" parent="objects/doorSpr"]
-scale = Vector2( 0.4375, 0.765625 )
+scale = Vector2( 1.33333, 2 )
 z_index = -1
 texture = ExtResource( 12 )
+hframes = 2
+frame = 1
 
 [node name="player" parent="." instance=ExtResource( 13 )]
 position = Vector2( 337, 1660 )
