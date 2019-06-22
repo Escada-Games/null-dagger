@@ -15,6 +15,9 @@ func _ready():
 		$zero.deactivate()
 		$one.activate()
 
+func unlock():
+	$zero/animationPlayer.play("unlocked")
+
 func glitch():
 	if self.mode==0:
 		$zero.deactivate()

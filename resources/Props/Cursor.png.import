@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Key_Anim_8x8.png-8edf292e5db8eef505f6eb891279dd78.stex"
+path="res://.import/Cursor.png-a959fb41a636b20e1adbbf246364cdce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Props/Key_Anim_8x8.png"
-dest_files=[ "res://.import/Key_Anim_8x8.png-8edf292e5db8eef505f6eb891279dd78.stex" ]
+source_file="res://resources/Props/Cursor.png"
+dest_files=[ "res://.import/Cursor.png-a959fb41a636b20e1adbbf246364cdce.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

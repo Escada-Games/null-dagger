@@ -10,26 +10,26 @@ var spikeSolid=preload("res://scenes/spike-solid/spike-solid.tscn")
 
 func _ready():
 	self.z_index=1
-		print('Tilemap: Beginning autotile...')
-		for x in range(-1,grid_size.x):
-			for y in range(-1,grid_size.y):
-				if get_cell(x,y)!=INVALID_CELL:
-					var north_tile = 1 if get_cell(x,y-1) != INVALID_CELL else 0
-					var west_tile = 1 if get_cell(x-1,y) != INVALID_CELL else 0
-					var east_tile = 1 if get_cell(x+1,y) != INVALID_CELL else 0
-					var south_tile = 1 if get_cell(x,y+1) != INVALID_CELL else 0
-					var tile_index = 0 + North * north_tile + West * west_tile + East * east_tile + South * south_tile
-					
-					if tile_index!=15:
-						set_cell(x,y,tile_index,false,false,true)
-						var i=spikeSolid.instance()
-						i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
-						i.mode=1
-						i.spriteProperties[0]=tilemapTexture
-						i.spriteProperties[1]=Vector2(1,1)
-						i.spriteProperties[2]=4
-						i.spriteProperties[3]=4
-						i.spriteProperties[4]=tile_index
+	print('Tilemap: Beginning autotile...')
+	for x in range(-1,grid_size.x):
+		for y in range(-1,grid_size.y):
+			if get_cell(x,y)!=INVALID_CELL:
+				var north_tile = 1 if get_cell(x,y-1) != INVALID_CELL else 0
+				var west_tile = 1 if get_cell(x-1,y) != INVALID_CELL else 0
+				var east_tile = 1 if get_cell(x+1,y) != INVALID_CELL else 0
+				var south_tile = 1 if get_cell(x,y+1) != INVALID_CELL else 0
+				var tile_index = 0 + North * north_tile + West * west_tile + East * east_tile + South * south_tile
+				
+				if tile_index!=15:
+					set_cell(x,y,tile_index,false,false,true)
+					var i=spikeSolid.instance()
+					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
+					i.mode=1
+					i.spriteProperties[0]=tilemapTexture
+					i.spriteProperties[1]=Vector2(1,1)
+					i.spriteProperties[2]=4
+					i.spriteProperties[3]=4
+					i.spriteProperties[4]=tile_index
 #						if tile_index!=15:
 #							i.spriteProperties[4]=tile_index
 #						else:
@@ -37,22 +37,22 @@ func _ready():
 #								i.spriteProperties[4]=tile_index+3
 #							else:
 #							 i.spriteProperties[4]=tile_index+(randi()%3)
-						get_parent().add_child(i)
-						get_parent().call_deferred("add_child",i)
+					get_parent().add_child(i)
+					get_parent().call_deferred("add_child",i)
+				else:
+					var offset=0
+					if randf()>0.98:
+						offset=3
 					else:
-						var offset=0
-						if randf()>0.98:
-							offset=3
-						else:
-							offset=(randi()%3)
-						self.set_cell(x,y,tile_index+offset)
-		for x in range(-1,grid_size.x):
-			for y in range(-1,grid_size.y):
-				if get_cell(x,y)!=INVALID_CELL:
-					if is_cell_transposed(x,y):set_cell(x,y,-1)
+						offset=(randi()%3)
+					self.set_cell(x,y,tile_index+offset)
+	for x in range(-1,grid_size.x):
+		for y in range(-1,grid_size.y):
+			if get_cell(x,y)!=INVALID_CELL:
+				if is_cell_transposed(x,y):set_cell(x,y,-1)
 					
-		print('Tilemap for Spikes: Autotiling done!')
-		print('Tilemap for Spikes: Deleting myself so that only the individual tiles can remain.')
+	print('Tilemap for Spikes: Autotiling done!')
+	print('Tilemap for Spikes: Deleting myself so that only the individual tiles can remain.')
 #		self.queue_free()
 func glitch():pass
 #extends TileMap
