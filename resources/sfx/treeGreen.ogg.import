@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/treeGreen.ogg-67d35c9a75caaf0bae274815d07ee693.oggstr"
+
+[deps]
+
+source_file="res://resources/sfx/treeGreen.ogg"
+dest_files=[ "res://.import/treeGreen.ogg-67d35c9a75caaf0bae274815d07ee693.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
