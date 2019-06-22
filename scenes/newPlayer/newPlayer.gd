@@ -84,6 +84,7 @@ func _physics_process(delta):
 	$spriteGlitched.flip_h=0 if inputDirection.x==1 else 1 if inputDirection.x==-1 else $spriteGlitched.flip_h
 	
 	$glitchAim.position=blinkRadius*(get_global_mouse_position()-self.global_position).normalized()
+	$glitchAim.rotation=(PI/2)+(get_global_mouse_position()-self.global_position).angle()
 	
 	if Input.is_action_just_pressed("ui_jump"):
 		jumpPressBuffer=0

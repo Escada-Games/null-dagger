@@ -4,7 +4,7 @@
 [ext_resource path="res://resources/Char/charNoDaggerSpritesheetShaded.png" type="Texture" id=2]
 [ext_resource path="res://resources/Char/charDaggerSpritesheetShaded.png" type="Texture" id=3]
 [ext_resource path="res://resources/Char/Char_SmearBug.png" type="Texture" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://resources/Props/Cursor.png" type="Texture" id=5]
 [ext_resource path="res://scenes/pauseManager/pauseManager.gd" type="Script" id=6]
 [ext_resource path="res://resources/sfx/landing.wav" type="AudioStream" id=7]
 [ext_resource path="res://resources/sfx/jumping.wav" type="AudioStream" id=8]
@@ -167,6 +167,7 @@ anims/walkcycle = SubResource( 5 )
 
 [node name="sprite" type="Sprite" parent="."]
 position = Vector2( 2, -2.5 )
+z_index = 1
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 8
@@ -193,7 +194,9 @@ shape = SubResource( 6 )
 
 [node name="glitchAim" type="Sprite" parent="."]
 position = Vector2( 33, 0 )
-scale = Vector2( 0.2, 0.2 )
+rotation = 1.57079
+scale = Vector2( 0.75, 0.75 )
+z_index = 4096
 texture = ExtResource( 5 )
 
 [node name="tmrToUnglitch" type="Timer" parent="."]

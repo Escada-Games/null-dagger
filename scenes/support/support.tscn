@@ -8,9 +8,11 @@ func _ready():
 #	print(self.scale.y*self.texture.get_height())
 #	self.global_position.x-=8
 #	self.global_position.y-=8
-	$leg.scale.y=$line2D.points[1].y"
+	$leg.scale.y=$line2D.points[1].y
+	$line2D.queue_free()"
 
 [node name="support" type="Sprite"]
+modulate = Color( 0.447059, 0.447059, 0.447059, 1 )
 position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 vframes = 2
@@ -20,12 +22,13 @@ script = SubResource( 1 )
 position = Vector2( 0, 3 )
 points = PoolVector2Array( 0, 0, 0, 800 )
 width = 2.0
+texture_mode = 0
 sharp_limit = 1.0
 round_precision = 1
 
 [node name="leg" type="Sprite" parent="."]
 position = Vector2( -7, 1 )
-z_index = -5
+scale = Vector2( 1, 500 )
 texture = ExtResource( 1 )
 centered = false
 vframes = 2
