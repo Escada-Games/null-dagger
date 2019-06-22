@@ -11,7 +11,6 @@ func _ready():
 func changeScene(scene):
 	var i=sceneChanger.instance()
 	i.scene=scene
-	print(self.get_children()[0].name)
 	var j=scene.instance()
 	if j.name=="2":
 		$musicCalm.fadeOut()
