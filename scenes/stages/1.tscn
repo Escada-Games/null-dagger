@@ -55,6 +55,7 @@ extents = Vector2( 112, 40 )
 [node name="1" type="Node2D"]
 
 [node name="parallaxBackground" type="ParallaxBackground" parent="."]
+editor/display_folded = true
 
 [node name="bgFar" type="ParallaxLayer" parent="parallaxBackground"]
 position = Vector2( 27, 24 )
@@ -156,7 +157,7 @@ rotation = -2.87979
 newOffset = Vector2( 0, 80 )
 
 [node name="cameraShift2" parent="objects/cameraShifts" instance=ExtResource( 12 )]
-position = Vector2( 594, 626 )
+position = Vector2( 594, 678 )
 rotation = -3.14159
 newOffset = Vector2( 0, 30 )
 
