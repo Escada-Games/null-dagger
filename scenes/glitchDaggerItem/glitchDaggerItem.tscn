@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/glitchDaggerItem/glitchDaggerItem.gd" type="Script" id=1]
 [ext_resource path="res://scenes/key/animKey.tres" type="Animation" id=2]
@@ -32,6 +32,8 @@ shader_param/aberrationAmountX = 0.5
 shader_param/aberrationAmountY = 0.5
 shader_param/mask_texture = ExtResource( 4 )
 
+[sub_resource type="RectangleShape2D" id=4]
+
 [node name="glitchDaggerItem" type="Area2D"]
 script = ExtResource( 1 )
 
@@ -54,7 +56,14 @@ shape = SubResource( 1 )
 
 [node name="shaderSprite" type="Sprite" parent="."]
 material = SubResource( 3 )
+position = Vector2( 0, 76 )
 scale = Vector2( 5, 5 )
 z_index = 4096
 texture = ExtResource( 5 )
+
+[node name="kinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 0, 76 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="kinematicBody2D"]
+shape = SubResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_key_body_entered"]

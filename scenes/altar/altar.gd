@@ -3,6 +3,15 @@ var cyanGhost=preload("res://scenes/ghosts/cyanGhost.tscn")
 var magentaGhost=preload("res://scenes/ghosts/magentaGhost.tscn")
 func _ready():
 	self.add_to_group("Solid")
+	self.set_physics_process(true)
+func _physics_process(delta):
+	for body in $area2D.get_overlapping_bodies():
+		if body.is_in_group("glitchDaggerItem"):
+			$sprite.frame=1 if randf()<0.8 else 0
+			return
+	$sprite.frame=0
+#	set_physics_process(false)
+		
 func glitch():
 #	get_parent().glitch()
 	$sprite.frame=1 if $sprite.frame==0 else 0
