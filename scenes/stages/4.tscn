@@ -59,7 +59,6 @@ script = ExtResource( 8 )
 [node name="cameraShifts" type="Node2D" parent="objects"]
 
 [node name="platformSupports" type="Node2D" parent="objects"]
-editor/display_folded = true
 position = Vector2( 176, 1408 )
 
 [node name="support" parent="objects/platformSupports" instance=ExtResource( 9 )]

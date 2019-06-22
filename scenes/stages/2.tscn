@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG2.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/backgroundAutotiler/tileMapBackground.gd" type="Script" id=2]
@@ -16,7 +16,8 @@
 [ext_resource path="res://scenes/altar/altar.gd" type="Script" id=14]
 [ext_resource path="res://resources/Props/Altar_25x14.png" type="Texture" id=15]
 [ext_resource path="res://resources/Props/NewAltar_54x44.png" type="Texture" id=16]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=17]
+[ext_resource path="res://resources/Props/Mouse_17x19_2.png" type="Texture" id=17]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 52, 9 )
@@ -29,6 +30,62 @@ extents = Vector2( 48, 9 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 44, 9 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Area2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$sprite.modulate.a=0
+	$sprite.position.y=50
+
+
+func _on_guideMoveRight_body_entered(body):
+	if body.is_in_group(\"Player\"):
+		$twnAlpha.interpolate_property($sprite,\"modulate:a\",$sprite.modulate.a,1,1.5,Tween.TRANS_EXPO,Tween.EASE_OUT)
+		$twnAlpha.interpolate_property($sprite,\"position:y\",$sprite.position.y,0,1.5,Tween.TRANS_BACK,Tween.EASE_OUT)
+		$twnAlpha.start()
+		$collisionShape2D.disabled=true
+"
+
+[sub_resource type="Animation" id=6]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 28, 154 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
 
 [node name="2" type="Node2D"]
 
@@ -128,7 +185,44 @@ shape = SubResource( 4 )
 
 [node name="twnAlpha" type="Tween" parent="objects/altar"]
 
-[node name="player" parent="." instance=ExtResource( 17 )]
+[node name="guideMoveLMB" type="Area2D" parent="objects"]
+position = Vector2( 1328, 1867 )
+script = SubResource( 5 )
+
+[node name="sprite" type="Sprite" parent="objects/guideMoveLMB"]
+texture = ExtResource( 17 )
+hframes = 3
+
+[node name="twnAlpha" type="Tween" parent="objects/guideMoveLMB"]
+
+[node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveLMB"]
+autoplay = "idle"
+anims/idle = SubResource( 6 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveLMB"]
+position = Vector2( 0, 45 )
+shape = SubResource( 7 )
+
+[node name="guideMoveRMB" type="Area2D" parent="objects"]
+position = Vector2( 1634, 1905 )
+script = SubResource( 5 )
+
+[node name="sprite" type="Sprite" parent="objects/guideMoveRMB"]
+texture = ExtResource( 17 )
+hframes = 3
+frame = 2
+
+[node name="twnAlpha" type="Tween" parent="objects/guideMoveRMB"]
+
+[node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveRMB"]
+autoplay = "idle"
+anims/idle = SubResource( 8 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveRMB"]
+position = Vector2( 0, 45 )
+shape = SubResource( 7 )
+
+[node name="player" parent="." instance=ExtResource( 18 )]
 editor/display_folded = true
 position = Vector2( 240, 128 )
 
@@ -146,3 +240,5 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.5
 
 [node name="twnCamera" type="Tween" parent="player"]
+[connection signal="body_entered" from="objects/guideMoveLMB" to="objects/guideMoveLMB" method="_on_guideMoveRight_body_entered"]
+[connection signal="body_entered" from="objects/guideMoveRMB" to="objects/guideMoveRMB" method="_on_guideMoveRight_body_entered"]

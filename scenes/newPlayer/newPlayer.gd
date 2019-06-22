@@ -112,8 +112,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_lmb") and daggerCount>0 and hasDagger:
 		var i=glitchDagger.instance()
 		i.global_position=self.global_position#$glitchAim.global_position
+		
 #		i.position=self.position
 		i.direction=$glitchAim.position.normalized()
+		i.rotation=$glitchAim.position.angle()
 		i.returnTo=self
 		i.add_collision_exception_with(self)
 		get_parent().add_child(i)
