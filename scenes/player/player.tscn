@@ -1,14 +1,84 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/newPlayer/newPlayer.gd" type="Script" id=1]
 [ext_resource path="res://resources/Char/charNoDaggerSpritesheetShaded.png" type="Texture" id=2]
 [ext_resource path="res://resources/Char/charDaggerSpritesheetShaded.png" type="Texture" id=3]
 [ext_resource path="res://resources/Char/Char_SmearBug.png" type="Texture" id=4]
-[ext_resource path="res://resources/Props/Cursor.png" type="Texture" id=5]
-[ext_resource path="res://resources/sfx/landing.wav" type="AudioStream" id=6]
-[ext_resource path="res://resources/sfx/jumping.wav" type="AudioStream" id=7]
-[ext_resource path="res://resources/sfx/grabAltered.wav" type="AudioStream" id=8]
-[ext_resource path="res://scenes/pauseManager/pauseManager.gd" type="Script" id=9]
+[ext_resource path="res://resources/Char/Char_Looooot.png" type="Texture" id=5]
+[ext_resource path="res://resources/AssetsTst2.png" type="Texture" id=6]
+[ext_resource path="res://resources/circleForShader2.png" type="Texture" id=7]
+[ext_resource path="res://resources/circleForShader.png" type="Texture" id=8]
+[ext_resource path="res://resources/Props/Cursor.png" type="Texture" id=9]
+[ext_resource path="res://resources/sfx/landing.wav" type="AudioStream" id=10]
+[ext_resource path="res://resources/sfx/jumping.wav" type="AudioStream" id=11]
+[ext_resource path="res://resources/sfx/grabAltered.wav" type="AudioStream" id=12]
+[ext_resource path="res://scenes/pauseManager/pauseManager.gd" type="Script" id=13]
+
+[sub_resource type="Animation" id=7]
+resource_name = "getDagger"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("spriteGetDagger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "resetAnim"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("spriteGetDagger:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("spriteWithDagger:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -151,6 +221,29 @@ tracks/1/keys = {
 "values": [ 24, 25, 26, 27, 28, 29, 30 ]
 }
 
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+//render_mode unshaded;
+
+uniform sampler2D mask_texture;
+uniform float aberrationAmountX: hint_range(0,1);
+uniform float aberrationAmountY: hint_range(0,1);
+
+void fragment() {
+	vec2 uv = SCREEN_UV;
+	COLOR.r=texture(SCREEN_TEXTURE, uv - vec2(aberrationAmountX,aberrationAmountY)).r;
+	COLOR.g=texture(SCREEN_TEXTURE, uv - 0.1*sin(TIME)*vec2(aberrationAmountX,aberrationAmountY)).g;
+	COLOR.b=texture(SCREEN_TEXTURE, uv + vec2(aberrationAmountX,aberrationAmountY)).b;
+	COLOR.a=texture(TEXTURE, UV).a*texture(mask_texture,UV).a;
+//	COLOR.r=0.0;COLOR.g=0.0;COLOR.b=0.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+shader_param/aberrationAmountX = 0.0
+shader_param/aberrationAmountY = 0.0
+shader_param/mask_texture = ExtResource( 7 )
+
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 6, 10 )
 
@@ -159,6 +252,7 @@ script = ExtResource( 1 )
 
 [node name="animationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
+anims/getDagger = SubResource( 7 )
 anims/idle = SubResource( 1 )
 anims/jumpDown = SubResource( 2 )
 anims/jumpUp = SubResource( 3 )
@@ -187,6 +281,27 @@ position = Vector2( 2, -2.5 )
 texture = ExtResource( 4 )
 hframes = 6
 
+[node name="spriteGetDagger" type="Sprite" parent="."]
+visible = false
+position = Vector2( 2, -2.5 )
+texture = ExtResource( 5 )
+
+[node name="spriteDagger" type="Sprite" parent="spriteGetDagger"]
+position = Vector2( 2.38419e-07, -10.5 )
+rotation = 1.57079
+scale = Vector2( 1.5, 2.5 )
+texture = ExtResource( 6 )
+vframes = 7
+hframes = 5
+frame = 13
+
+[node name="spriteShader" type="Sprite" parent="spriteGetDagger"]
+material = SubResource( 9 )
+position = Vector2( 16, -4.54747e-13 )
+scale = Vector2( 0.4, 0.4 )
+z_index = 4096
+texture = ExtResource( 8 )
+
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 0.5 )
@@ -197,7 +312,7 @@ position = Vector2( 33, 0 )
 rotation = 1.57079
 scale = Vector2( 0.75, 0.75 )
 z_index = 4096
-texture = ExtResource( 5 )
+texture = ExtResource( 9 )
 
 [node name="tmrToUnglitch" type="Timer" parent="."]
 one_shot = true
@@ -213,16 +328,16 @@ margin_right = 513.0
 margin_bottom = 290.0
 
 [node name="sfxJump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 10 )
 bus = "sfx"
 
 [node name="sfxLanding" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 11 )
 volume_db = -5.0
 bus = "sfx"
 
 [node name="sfxGrabbing" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 12 )
 volume_db = -5.0
 bus = "sfx"
 
@@ -243,6 +358,6 @@ margin_top = -368.0
 margin_right = 850.0
 margin_bottom = 562.0
 color = Color( 0, 0, 0, 0.670588 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 [connection signal="timeout" from="tmrToUnglitch" to="." method="_on_tmrToUnglitch_timeout"]
 [connection signal="timeout" from="tmrRespawn" to="." method="_on_tmrRespawn_timeout"]

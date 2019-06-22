@@ -4,7 +4,7 @@ var vectorVelocity=Vector2()
 const horizontalSpeed=145#155
 
 const jumpForce=290
-var numberOfJumps=0
+var numberOfJumps=1
 const maxNumberOfJumps=1
 
 var jumpBuffer=0
@@ -21,6 +21,7 @@ var gravityNormal=17
 var glitchABit=false
 var dead=false
 var anim=""
+var t=0
 
 export (int) var blinkRadius=25
 var daggerCount=1
@@ -50,6 +51,19 @@ func _ready():
 	getDagger()
 
 func _physics_process(delta):
+	if anim=="getDagger":
+		if anim!=$animationPlayer.current_animation:$animationPlayer.play(anim)
+		t+=1
+		$spriteGetDagger/spriteShader.material.set_shader_param("aberrationAmountX",0.005+0.005*abs(sin(2*PI*rand_range(0.125,0.99)*t)*sin(2*PI*rand_range(33.33,66.66)*t)))
+		$spriteGetDagger/spriteShader.material.set_shader_param("aberrationAmountY",0.001+0.002*abs(sin(2*PI*rand_range(0.125,0.99)*t)*sin(2*PI*rand_range(10.00,25.00)*t)))
+		
+		var lerpConstant=0.1 if inputDirection.x!=0 else 0.25
+		vectorVelocity.x=lerp(vectorVelocity.x,horizontalSpeed*inputDirection.x,lerpConstant)
+		vectorVelocity.y+=realGravity
+	
+		vectorVelocity=move_and_slide(vectorVelocity,Vector2(0,-1))
+		return
+		
 	if dead:
 		$sprite.vframes=int(rand_range(1,6))
 		$sprite.hframes=int(rand_range(1,6))
@@ -106,7 +120,7 @@ func _physics_process(delta):
 		loseDagger()
 #		daggerCount-=1
 	
-	if Input.is_action_just_pressed("ui_die"): self.die()
+#	if Input.is_action_just_pressed("ui_die"): self.die()
 
 	var lerpConstant=0.1 if inputDirection.x!=0 else 0.25
 	vectorVelocity.x=lerp(vectorVelocity.x,horizontalSpeed*inputDirection.x,lerpConstant)
@@ -173,3 +187,4 @@ func _on_tmrToUnglitch_timeout():
 
 
 func _on_tmrRespawn_timeout():respawn()
+func resetAnim():anim="idle"

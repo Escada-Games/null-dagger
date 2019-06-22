@@ -158,7 +158,7 @@ editor/display_folded = true
 [node name="bgFar" type="ParallaxLayer" parent="parallaxBackground"]
 position = Vector2( 27, 24 )
 motion_scale = Vector2( 0.2, 1 )
-motion_mirroring = Vector2( 496, 0 )
+motion_mirroring = Vector2( 610.88, 0 )
 script = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="parallaxBackground/bgFar"]
@@ -170,7 +170,7 @@ texture = ExtResource( 1 )
 [node name="bgNear" type="ParallaxLayer" parent="parallaxBackground"]
 position = Vector2( 27, 24 )
 motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 496, 0 )
+motion_mirroring = Vector2( 610.88, 0 )
 script = SubResource( 2 )
 
 [node name="sprite" type="Sprite" parent="parallaxBackground/bgNear"]
@@ -183,7 +183,7 @@ texture = ExtResource( 2 )
 
 [node name="tileMapBGDarker" type="TileMap" parent="objects"]
 modulate = Color( 0.329412, 0.329412, 0.329412, 1 )
-z_index = 1
+z_index = -10
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -191,7 +191,7 @@ tile_data = PoolIntArray( 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393256, 0, 0
 script = ExtResource( 4 )
 
 [node name="tileMapBackground" type="TileMap" parent="objects"]
-z_index = 1
+z_index = -10
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -281,10 +281,12 @@ newOffset = Vector2( 0, 30 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
 position = Vector2( -9, 0 )
+z_index = 1
 
 [node name="1" parent="objects/platformSupports" instance=ExtResource( 15 )]
 editor/display_folded = true
 position = Vector2( 441, 645 )
+z_index = -1
 
 [node name="2" parent="objects/platformSupports" instance=ExtResource( 15 )]
 editor/display_folded = true
@@ -295,12 +297,16 @@ editor/display_folded = true
 position = Vector2( 489, 549 )
 
 [node name="4" parent="objects/platformSupports" instance=ExtResource( 15 )]
-editor/display_folded = true
 position = Vector2( 841, 661 )
 
+[node name="line2D" parent="objects/platformSupports/4" index="0"]
+points = PoolVector2Array( 0, 0, 0, 6 )
+
 [node name="5" parent="objects/platformSupports" instance=ExtResource( 15 )]
-editor/display_folded = true
 position = Vector2( 953, 661 )
+
+[node name="line2D" parent="objects/platformSupports/5" index="0"]
+points = PoolVector2Array( 0, 0, 0, 6 )
 
 [node name="6" parent="objects/platformSupports" instance=ExtResource( 15 )]
 editor/display_folded = true
@@ -355,3 +361,7 @@ drag_margin_bottom = 0.5
 [node name="twnCamera" type="Tween" parent="player"]
 [connection signal="body_entered" from="objects/deathZone/area2D" to="objects/deathZone" method="_on_area2D_body_entered"]
 [connection signal="body_entered" from="objects/transition" to="objects/transition" method="_on_area2D_body_entered"]
+
+[editable path="objects/platformSupports/4"]
+
+[editable path="objects/platformSupports/5"]

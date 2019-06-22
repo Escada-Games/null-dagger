@@ -28,6 +28,7 @@ func _physics_process(delta):
 func _on_key_body_entered(body):
 	if body.is_in_group("Player"):
 		body.getDagger()
+		body.anim="getDagger"
 		$sprite.self_modulate.a=0
 		$collisionShape2D.disabled=true
 		state="stateVanishing"
