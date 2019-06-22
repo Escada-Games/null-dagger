@@ -4,6 +4,7 @@ var follow
 var targetPosition=Vector2()
 var t=0
 func _ready():
+	$kinematicBody2D.add_to_group("glitchDaggerItem")
 	set_physics_process(true)
 func _physics_process(delta):
 	t+=1
