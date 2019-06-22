@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/tilesets/tilesetGenericSolids.tres" type="TileSet" id=2]
@@ -8,9 +8,10 @@
 [ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=6]
 [ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=7]
 [ext_resource path="res://scenes/mirror/mirror.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=9]
-[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=10]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=11]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -72,18 +73,69 @@ shape = SubResource( 1 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
 
-[node name="door" parent="objects" instance=ExtResource( 9 )]
+[node name="support" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 624, 1733 )
+
+[node name="support4" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 592, 1637 )
+
+[node name="support2" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 528, 1733 )
+
+[node name="support3" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 560, 1637 )
+
+[node name="support5" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 496, 1605 )
+
+[node name="support9" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 496, 1605 )
+
+[node name="support11" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 496, 1477.5 )
+
+[node name="support13" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 496, 1428.5 )
+
+[node name="support6" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 656, 1605 )
+
+[node name="support10" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 656, 1605 )
+
+[node name="support12" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 656, 1477.5 )
+
+[node name="support14" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 656, 1428.5 )
+
+[node name="support17" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 656, 1301 )
+
+[node name="support7" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 592, 1557 )
+
+[node name="support15" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 592, 1460.5 )
+
+[node name="support8" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 560, 1557 )
+
+[node name="support16" parent="objects/platformSupports" instance=ExtResource( 9 )]
+position = Vector2( 560, 1460.5 )
+
+[node name="door" parent="objects" instance=ExtResource( 10 )]
 position = Vector2( 576, 151 )
 
 [node name="doorSprite" type="Sprite" parent="objects"]
 position = Vector2( 573, 1832 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 flip_h = true
 hframes = 2
 frame = 1
 
-[node name="player" parent="." instance=ExtResource( 11 )]
+[node name="player" parent="." instance=ExtResource( 12 )]
 position = Vector2( 573, 1832 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
