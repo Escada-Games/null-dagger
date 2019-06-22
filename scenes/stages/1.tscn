@@ -172,7 +172,7 @@ func _on_guideMoveRight_body_entered(body):
 		$collisionShape2D.disabled=true
 "
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
@@ -188,7 +188,7 @@ tracks/0/keys = {
 "values": [ 0, 2 ]
 }
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 25, 37 )
 
 [sub_resource type="Animation" id=13]
@@ -455,11 +455,11 @@ hframes = 4
 
 [node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveRight"]
 autoplay = "idle"
-anims/idle = SubResource( 12 )
+anims/idle = SubResource( 11 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveRight"]
 position = Vector2( 0, 45 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="guideMoveUp" type="Area2D" parent="objects"]
 position = Vector2( 232, 196 )
@@ -477,7 +477,7 @@ anims/idle = SubResource( 13 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveUp"]
 position = Vector2( 0, 45 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="guideMoveLeft" type="Area2D" parent="objects"]
 position = Vector2( 720, 314 )

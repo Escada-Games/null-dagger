@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/sfx/treeGreen.ogg" type="AudioStream" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AudioStreamPlayer
+const fadeTime=3.0
+func _ready():pass
+func fadeOut():
+	print(\"musicCalm: Fading out...\")
+	$twnVolume.interpolate_property(self,\"volume_db\",self.volume_db,-100,fadeTime,Tween.TRANS_EXPO,Tween.EASE_IN_OUT)
+	$twnVolume.start()
+func _on_twnVolume_tween_completed(object, key):self.queue_free()"
+
+[node name="musicCalm" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+autoplay = true
+bus = "music"
+script = SubResource( 1 )
+
+[node name="twnVolume" type="Tween" parent="."]
+[connection signal="tween_completed" from="twnVolume" to="." method="_on_twnVolume_tween_completed"]
