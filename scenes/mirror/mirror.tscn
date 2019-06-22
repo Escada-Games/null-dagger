@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/mirror/mirror.gd" type="Script" id=1]
 [ext_resource path="res://resources/Props/Mirror_5x16.png" type="Texture" id=2]
+[ext_resource path="res://resources/sfx/mirrorSFX.wav" type="AudioStream" id=3]
 
 [sub_resource type="StreamTexture" id=2]
 load_path = "res://.import/Mirror_5x16.png-101a20cd894bc41e3ce120facfe30a2c.stex"
@@ -30,4 +31,9 @@ frame = 1
 shape = SubResource( 1 )
 
 [node name="twnSpriteGlow" type="Tween" parent="."]
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+bus = "sfx"
 [connection signal="body_entered" from="." to="." method="_on_mirror_body_entered"]
