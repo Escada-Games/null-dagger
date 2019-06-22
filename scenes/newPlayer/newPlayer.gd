@@ -70,7 +70,7 @@ func _physics_process(delta):
 	
 	if self.is_on_floor():
 		if numberOfJumps>0:
-			$sfxLanding.pitch_scale=rand_range(0.95,1.05)
+			$sfxLanding.pitch_scale=rand_range(0.90,1.10)
 			$sfxLanding.play()
 		jumpBuffer=0
 		numberOfJumps=0
@@ -89,7 +89,7 @@ func _physics_process(delta):
 		jumpPressBuffer=0
 		
 	if jumpPressBuffer<maximumJumpPressBuffer and numberOfJumps<maxNumberOfJumps and jumpBuffer<maximumJumpBuffer and not onDoor:
-		$sfxJump.pitch_scale=rand_range(0.95,1.05)
+		$sfxJump.pitch_scale=rand_range(0.90,1.10)
 		$sfxJump.play()
 		vectorVelocity.y=-jumpForce
 		numberOfJumps+=1
@@ -153,7 +153,7 @@ func loseDagger():
 #		$sprite.visible=false
 
 func getDagger():
-	$sfxGrabbing.pitch_scale=rand_range(0.95,1.05)
+	$sfxGrabbing.pitch_scale=rand_range(0.90,1.10)
 	$sfxGrabbing.play()
 	self.hasDagger=true
 	$sprite.visible=false

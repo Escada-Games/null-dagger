@@ -9,6 +9,7 @@ var spikeSolid=preload("res://scenes/spike-solid/spike-solid.tscn")
 
 
 func _ready():
+	self.z_index=1
 		print('Tilemap: Beginning autotile...')
 		for x in range(-1,grid_size.x):
 			for y in range(-1,grid_size.y):
@@ -26,15 +27,16 @@ func _ready():
 						i.mode=1
 						i.spriteProperties[0]=tilemapTexture
 						i.spriteProperties[1]=Vector2(1,1)
-						i.spriteProperties[2]=5
+						i.spriteProperties[2]=4
 						i.spriteProperties[3]=4
-						if tile_index!=15:
-							i.spriteProperties[4]=tile_index
-						else:
-							if randf()>0.98:
-								i.spriteProperties[4]=tile_index+3
-							else:
-							 i.spriteProperties[4]=tile_index+(randi()%3)
+						i.spriteProperties[4]=tile_index
+#						if tile_index!=15:
+#							i.spriteProperties[4]=tile_index
+#						else:
+#							if randf()>0.98:
+#								i.spriteProperties[4]=tile_index+3
+#							else:
+#							 i.spriteProperties[4]=tile_index+(randi()%3)
 						get_parent().add_child(i)
 						get_parent().call_deferred("add_child",i)
 					else:

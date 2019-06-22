@@ -54,6 +54,7 @@ frame = 13
 material = ExtResource( 3 )
 position = Vector2( 16, -4.54747e-13 )
 scale = Vector2( 0.4, 0.4 )
+z_index = 4096
 texture = ExtResource( 4 )
 
 [node name="tmrSpriteTrail" type="Timer" parent="."]

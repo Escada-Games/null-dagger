@@ -13,6 +13,14 @@ func _ready():
 		node.get_node('sprite').vframes=self.spriteProperties[2]
 		node.get_node('sprite').hframes=self.spriteProperties[3]
 		node.get_node('sprite').frame=self.spriteProperties[4]
+#	$zero.get_node('sprite').scale=self.spriteProperties[1]
+#	$zero.get_node('sprite').vframes=self.spriteProperties[2]-1
+#	$zero.get_node('sprite').hframes=self.spriteProperties[3]-1
+#	$zero.get_node('sprite').frame=self.spriteProperties[4]%15
+#	$one.get_node('sprite').scale=self.spriteProperties[1]
+#	$one.get_node('sprite').vframes=self.spriteProperties[2]
+#	$one.get_node('sprite').hframes=self.spriteProperties[3]
+#	$one.get_node('sprite').frame=self.spriteProperties[4]
 	
 	if self.mode==0:
 		$zero.activate()
