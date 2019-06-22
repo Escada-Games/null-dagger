@@ -50,7 +50,7 @@ func _ready():
 	checkpoint=i
 	get_parent().add_child(i)
 	set_physics_process(true)
-	getDagger()
+#	getDagger()
 
 func _physics_process(delta):
 #	print(ProjectSettings.get_setting("display:mouse_cursor:custom_image"))
