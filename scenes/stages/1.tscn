@@ -182,7 +182,7 @@ texture = ExtResource( 2 )
 [node name="objects" type="Node2D" parent="."]
 
 [node name="tileMapBGDarker" type="TileMap" parent="objects"]
-modulate = Color( 0.328125, 0.328125, 0.328125, 1 )
+modulate = Color( 0.329412, 0.329412, 0.329412, 1 )
 z_index = 1
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
