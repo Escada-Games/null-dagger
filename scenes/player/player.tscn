@@ -344,7 +344,7 @@ bus = "sfx"
 
 [node name="sfxDead" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -10.0
+volume_db = -15.0
 bus = "sfx"
 
 [node name="tmrRespawn" type="Timer" parent="."]

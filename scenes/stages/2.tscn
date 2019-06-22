@@ -7,16 +7,16 @@
 [ext_resource path="res://scenes/tilemapTiler/tileMap.gd" type="Script" id=5]
 [ext_resource path="res://resources/tilesets/debugTilesetSpikes.tres" type="TileSet" id=6]
 [ext_resource path="res://scenes/tilemapTiler/tileMapSpike.gd" type="Script" id=7]
-[ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=8]
-[ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=9]
-[ext_resource path="res://scenes/cameraShift/cameraShift.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/stages/3.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/altar/altar.gd" type="Script" id=14]
-[ext_resource path="res://resources/Props/Altar_25x14.png" type="Texture" id=15]
-[ext_resource path="res://resources/Props/NewAltar_54x44.png" type="Texture" id=16]
-[ext_resource path="res://resources/Props/Mouse_17x19_2.png" type="Texture" id=17]
+[ext_resource path="res://scenes/cameraShift/cameraShift.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/stages/3.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/altar/altar.gd" type="Script" id=12]
+[ext_resource path="res://resources/Props/Altar_25x14.png" type="Texture" id=13]
+[ext_resource path="res://resources/Props/NewAltar_54x44.png" type="Texture" id=14]
+[ext_resource path="res://resources/Props/Mouse_17x19_2.png" type="Texture" id=15]
+[ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=16]
+[ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=17]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -125,48 +125,40 @@ format = 1
 tile_data = PoolIntArray( 8192086, 0, 0, 8192087, 0, 0, 8192088, 0, 0, 8192089, 0, 0, 8192090, 0, 0, 8192091, 0, 0, 8192092, 0, 0, 8192093, 0, 0, 8192094, 0, 0, 8192095, 0, 0, 8192096, 0, 0, 8192097, 0, 0, 8192098, 0, 0, 8257622, 0, 0, 8257623, 0, 0, 8257624, 0, 0, 8257625, 0, 0, 8257626, 0, 0, 8257627, 0, 0, 8257628, 0, 0, 8257629, 0, 0, 8257630, 0, 0, 8257631, 0, 0, 8257632, 0, 0, 8257633, 0, 0, 8257634, 0, 0 )
 script = ExtResource( 7 )
 
-[node name="tileMapObjects" type="TileMap" parent="objects"]
-z_index = 1
-tile_set = ExtResource( 8 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( 7143477, 2, 0, 7143478, 2, 0, 7143479, 2, 0, 7143480, 2, 0, 7143481, 2, 0, 7143482, 2, 0, 7143483, 2, 0, 7143484, 2, 0, 7143485, 2, 0, 7143486, 2, 0, 7143487, 2, 0, 7143488, 2, 0, 7143489, 2, 0, 7536699, 13, 0, 7798861, 5, 0 )
-script = ExtResource( 9 )
-
 [node name="mirrors" type="Node2D" parent="objects"]
 
 [node name="cameraShifts" type="Node2D" parent="objects"]
 
-[node name="cameraShift" parent="objects/cameraShifts" instance=ExtResource( 10 )]
+[node name="cameraShift" parent="objects/cameraShifts" instance=ExtResource( 8 )]
 position = Vector2( 1239, 1887 )
 newOffset = Vector2( 30, 60 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
 
-[node name="support" parent="objects/platformSupports" instance=ExtResource( 11 )]
+[node name="support" parent="objects/platformSupports" instance=ExtResource( 9 )]
 position = Vector2( 864, 1749 )
 
-[node name="support2" parent="objects/platformSupports" instance=ExtResource( 11 )]
+[node name="support2" parent="objects/platformSupports" instance=ExtResource( 9 )]
 position = Vector2( 1040, 1749 )
 
-[node name="door" parent="objects" instance=ExtResource( 12 )]
+[node name="door" parent="objects" instance=ExtResource( 10 )]
 position = Vector2( 1761, 1911 )
-connectedStage = ExtResource( 13 )
+connectedStage = ExtResource( 11 )
 
 [node name="altar" type="StaticBody2D" parent="objects"]
 position = Vector2( 952, 1846 )
-script = ExtResource( 14 )
+script = ExtResource( 12 )
 
 [node name="spriteOld" type="Sprite" parent="objects/altar"]
 visible = false
 position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 5.76, 3 )
-texture = ExtResource( 15 )
+texture = ExtResource( 13 )
 hframes = 2
 
 [node name="sprite" type="Sprite" parent="objects/altar"]
 scale = Vector2( 2, 2 )
-texture = ExtResource( 16 )
+texture = ExtResource( 14 )
 hframes = 2
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/altar"]
@@ -197,7 +189,7 @@ position = Vector2( 1328, 1867 )
 script = SubResource( 5 )
 
 [node name="sprite" type="Sprite" parent="objects/guideMoveLMB"]
-texture = ExtResource( 17 )
+texture = ExtResource( 15 )
 hframes = 3
 
 [node name="twnAlpha" type="Tween" parent="objects/guideMoveLMB"]
@@ -210,12 +202,21 @@ anims/idle = SubResource( 6 )
 position = Vector2( 0, 45 )
 shape = SubResource( 7 )
 
+[node name="tileMapObjects" type="TileMap" parent="objects/guideMoveLMB"]
+position = Vector2( -1328, -1867 )
+z_index = 1
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 7143477, 2, 0, 7143478, 2, 0, 7143479, 2, 0, 7143480, 2, 0, 7143481, 2, 0, 7143482, 2, 0, 7143483, 2, 0, 7143484, 2, 0, 7143485, 2, 0, 7143486, 2, 0, 7143487, 2, 0, 7143488, 2, 0, 7143489, 2, 0, 7536699, 13, 0, 7798861, 5, 0 )
+script = ExtResource( 17 )
+
 [node name="guideMoveRMB" type="Area2D" parent="objects"]
 position = Vector2( 1614, 1905 )
 script = SubResource( 5 )
 
 [node name="sprite" type="Sprite" parent="objects/guideMoveRMB"]
-texture = ExtResource( 17 )
+texture = ExtResource( 15 )
 hframes = 3
 frame = 2
 
