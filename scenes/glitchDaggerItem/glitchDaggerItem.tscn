@@ -57,7 +57,7 @@ shape = SubResource( 1 )
 [node name="shaderSprite" type="Sprite" parent="."]
 material = SubResource( 3 )
 position = Vector2( 0, 76 )
-scale = Vector2( 5, 5 )
+scale = Vector2( 0.8, 0.8 )
 z_index = 4096
 texture = ExtResource( 5 )
 

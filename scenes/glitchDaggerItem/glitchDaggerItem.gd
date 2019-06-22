@@ -34,4 +34,6 @@ func _on_key_body_entered(body):
 		$collisionShape2D.disabled=true
 		state="stateVanishing"
 		global.hasDagger=true
+#		print(ProjectSettings.get_setting("display/mouse_cursor/custom_image"))
+		ProjectSettings.set_setting("display/mouse_cursor/custom_image","res://resources/Props/MouseCursor.png")
 #		self.queue_free()

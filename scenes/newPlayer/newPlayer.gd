@@ -29,6 +29,8 @@ var hasDagger=false
 
 var onDoor=false
 
+export (bool) var controllable=true
+
 var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
 var glitchDagger=preload("res://scenes/glitchDagger/glitchDagger.tscn")
 
@@ -51,6 +53,7 @@ func _ready():
 	getDagger()
 
 func _physics_process(delta):
+#	print(ProjectSettings.get_setting("display:mouse_cursor:custom_image"))
 	if anim=="getDagger":
 		if anim!=$animationPlayer.current_animation:$animationPlayer.play(anim)
 		t+=1
@@ -83,6 +86,7 @@ func _physics_process(delta):
 	realGravity=lerp(realGravity,gravity,0.25)
 	
 	if self.is_on_floor():
+		self.controllable=true
 		if numberOfJumps>0:
 			$sfxLanding.pitch_scale=rand_range(0.90,1.10)
 			$sfxLanding.play()
@@ -144,6 +148,8 @@ func _physics_process(delta):
 func glitch():pass
 func die():
 	self.dead=true
+	$sfxDead.pitch_scale=rand_range(0.90,1.10)
+	$sfxDead.play()
 	$tmrRespawn.start()
 
 func respawn():
