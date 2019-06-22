@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/tilesets/tilesetGenericSolids.tres" type="TileSet" id=2]
@@ -13,25 +13,20 @@
 [ext_resource path="res://scenes/stages/3.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/altar/altar.gd" type="Script" id=12]
 [ext_resource path="res://resources/Props/Altar_25x14.png" type="Texture" id=13]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=14]
+[ext_resource path="res://resources/Props/NewAltar_54x44.png" type="Texture" id=14]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 37, 9 )
+extents = Vector2( 52, 9 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 34, 9 )
+extents = Vector2( 50, 9 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 25, 9 )
+extents = Vector2( 48, 9 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 22, 9 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 13, 9 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 10, 9 )
+extents = Vector2( 44, 9 )
 
 [node name="2" type="Node2D"]
 
@@ -60,10 +55,11 @@ tile_data = PoolIntArray( 8192086, 0, 0, 8192087, 0, 0, 8192088, 0, 0, 8192089, 
 script = ExtResource( 5 )
 
 [node name="tileMapObjects" type="TileMap" parent="objects"]
+z_index = 1
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 7143477, 2, 0, 7143478, 2, 0, 7143479, 2, 0, 7143480, 2, 0, 7143481, 2, 0, 7143482, 2, 0, 7143483, 2, 0, 7143484, 2, 0, 7143485, 2, 0, 7143486, 2, 0, 7143487, 2, 0, 7143488, 2, 0, 7143489, 2, 0, 7471163, 13, 0, 7798861, 5, 0 )
+tile_data = PoolIntArray( 7143477, 2, 0, 7143478, 2, 0, 7143479, 2, 0, 7143480, 2, 0, 7143481, 2, 0, 7143482, 2, 0, 7143483, 2, 0, 7143484, 2, 0, 7143485, 2, 0, 7143486, 2, 0, 7143487, 2, 0, 7143488, 2, 0, 7143489, 2, 0, 7536699, 13, 0, 7798861, 5, 0 )
 script = ExtResource( 7 )
 
 [node name="mirrors" type="Node2D" parent="objects"]
@@ -88,41 +84,40 @@ position = Vector2( 1761, 1911 )
 connectedStage = ExtResource( 11 )
 
 [node name="altar" type="StaticBody2D" parent="objects"]
-position = Vector2( 952, 1867 )
+position = Vector2( 952, 1846 )
 script = ExtResource( 12 )
 
-[node name="sprite" type="Sprite" parent="objects/altar"]
-scale = Vector2( 3, 3 )
+[node name="spriteOld" type="Sprite" parent="objects/altar"]
+visible = false
+position = Vector2( -1.90735e-06, 0 )
+scale = Vector2( 5.76, 3 )
 texture = ExtResource( 13 )
 hframes = 2
 
+[node name="sprite" type="Sprite" parent="objects/altar"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+hframes = 2
+
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/altar"]
-position = Vector2( 0, 19 )
+position = Vector2( 0, 37 )
 shape = SubResource( 1 )
 
 [node name="collisionShape2D2" type="CollisionShape2D" parent="objects/altar"]
-position = Vector2( 0, 16 )
+position = Vector2( 0, 29 )
 shape = SubResource( 2 )
 
 [node name="collisionShape2D3" type="CollisionShape2D" parent="objects/altar"]
-position = Vector2( 0, 4 )
+position = Vector2( 0, 25 )
 shape = SubResource( 3 )
 
 [node name="collisionShape2D4" type="CollisionShape2D" parent="objects/altar"]
-position = Vector2( 0, 1 )
+position = Vector2( 0, 21 )
 shape = SubResource( 4 )
-
-[node name="collisionShape2D5" type="CollisionShape2D" parent="objects/altar"]
-position = Vector2( 0, -8 )
-shape = SubResource( 5 )
-
-[node name="collisionShape2D6" type="CollisionShape2D" parent="objects/altar"]
-position = Vector2( 0, -11 )
-shape = SubResource( 6 )
 
 [node name="twnAlpha" type="Tween" parent="objects/altar"]
 
-[node name="player" parent="." instance=ExtResource( 14 )]
+[node name="player" parent="." instance=ExtResource( 15 )]
 editor/display_folded = true
 position = Vector2( 240, 128 )
 
