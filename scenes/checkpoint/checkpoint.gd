@@ -1,10 +1,24 @@
 extends StaticBody2D
 var cyanGhost=preload("res://scenes/ghosts/cyanGhost.tscn")
 var magentaGhost=preload("res://scenes/ghosts/magentaGhost.tscn")
+var player
+var canCheckPlayer=false
 func _ready():
+	$sprite.modulate=Color("595959")
 	for node in get_tree().get_nodes_in_group("Player"):
 		self.add_collision_exception_with(node)
 	self.add_to_group("Solid")
+	set_physics_process(true)
+
+func _physics_process(delta):
+	$sprite.position.y=0
+	if canCheckPlayer:
+		if player.checkpoint!=self:
+			$twnSaturation.interpolate_property($sprite,"modulate",$sprite.modulate,Color("595959"),0.4,Tween.TRANS_EXPO,Tween.EASE_OUT)
+			$twnSaturation.start()
+			$twnScale.interpolate_property($sprite,"scale",$sprite.scale,Vector2(2,2),0.4,Tween.TRANS_ELASTIC,Tween.EASE_OUT)
+			$twnScale.start()
+			canCheckPlayer=false
 func glitch():
 	get_parent().glitch()
 	
@@ -43,5 +57,11 @@ func _on_area2D_body_entered(body):
 	if body.is_in_group("Player"):
 		if body.checkpoint!=self and $sprite.visible:
 			$sfx.play()
+			$twnSaturation.interpolate_property($sprite,"modulate",$sprite.modulate,Color("ffffff"),0.4,Tween.TRANS_EXPO,Tween.EASE_OUT)
+			$twnSaturation.start()
+			$twnScale.interpolate_property($sprite,"scale",$sprite.scale,Vector2(3.25,3.25),0.4,Tween.TRANS_ELASTIC,Tween.EASE_OUT)
+			$twnScale.start()
+			player=body
+			canCheckPlayer=true
+			
 		body.checkpoint=self
-

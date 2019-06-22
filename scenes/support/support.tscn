@@ -6,8 +6,8 @@
 script/source = "extends Sprite
 func _ready():
 #	print(self.scale.y*self.texture.get_height())
-	self.global_position.x-=8
-	self.global_position.y-=8
+#	self.global_position.x-=8
+#	self.global_position.y-=8
 	$leg.scale.y=$line2D.points[1].y"
 
 [node name="support" type="Sprite"]

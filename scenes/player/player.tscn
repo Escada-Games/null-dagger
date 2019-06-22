@@ -234,4 +234,9 @@ bus = "sfx"
 stream = ExtResource( 9 )
 volume_db = -5.0
 bus = "sfx"
+
+[node name="tmrRespawn" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
 [connection signal="timeout" from="tmrToUnglitch" to="." method="_on_tmrToUnglitch_timeout"]
+[connection signal="timeout" from="tmrRespawn" to="." method="_on_tmrRespawn_timeout"]

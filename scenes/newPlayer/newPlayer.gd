@@ -19,6 +19,7 @@ var gravityHolding=12
 var gravityNormal=17
 
 var glitchABit=false
+var dead=false
 var anim=""
 
 export (int) var blinkRadius=25
@@ -48,6 +49,13 @@ func _ready():
 	getDagger()
 
 func _physics_process(delta):
+	if dead:
+		$sprite.vframes=int(rand_range(1,6))
+		$sprite.hframes=int(rand_range(1,6))
+		$spriteWithDagger.vframes=int(rand_range(1,6))
+		$spriteWithDagger.hframes=int(rand_range(1,6))
+		return
+		
 	if glitchABit:
 		$sprite.vframes=int(rand_range(1,6))
 		$sprite.hframes=int(rand_range(1,6))
@@ -117,6 +125,16 @@ func _physics_process(delta):
 	
 func glitch():pass
 func die():
+	self.dead=true
+	$tmrRespawn.start()
+
+func respawn():
+	self.dead=false
+	$sprite.vframes=4
+	$sprite.hframes=8
+	$spriteWithDagger.vframes=4
+	$spriteWithDagger.hframes=8
+	$spriteGlitched.visible=false
 	self.vectorVelocity=Vector2()
 	self.global_position=checkpoint.global_position+Vector2(0,-16)
 	
@@ -150,3 +168,6 @@ func _on_tmrToUnglitch_timeout():
 	$spriteWithDagger.vframes=4
 	$spriteWithDagger.hframes=8
 	$spriteGlitched.visible=false
+
+
+func _on_tmrRespawn_timeout():respawn()
