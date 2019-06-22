@@ -131,7 +131,6 @@ shape = SubResource( 4 )
 [node name="player" parent="." instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( 240, 128 )
-blinkRadius = null
 
 [node name="camera2D" type="Camera2D" parent="player"]
 current = true

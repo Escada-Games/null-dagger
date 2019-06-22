@@ -57,8 +57,8 @@ func _physics_process(delta):
 		$spriteGetDagger/spriteShader.material.set_shader_param("aberrationAmountX",0.005+0.005*abs(sin(2*PI*rand_range(0.125,0.99)*t)*sin(2*PI*rand_range(33.33,66.66)*t)))
 		$spriteGetDagger/spriteShader.material.set_shader_param("aberrationAmountY",0.001+0.002*abs(sin(2*PI*rand_range(0.125,0.99)*t)*sin(2*PI*rand_range(10.00,25.00)*t)))
 		
-		var lerpConstant=0.1 if inputDirection.x!=0 else 0.25
-		vectorVelocity.x=lerp(vectorVelocity.x,horizontalSpeed*inputDirection.x,lerpConstant)
+		var lerpConstant=0.1
+		vectorVelocity.x=lerp(vectorVelocity.x,0,lerpConstant)
 		vectorVelocity.y+=realGravity
 	
 		vectorVelocity=move_and_slide(vectorVelocity,Vector2(0,-1))

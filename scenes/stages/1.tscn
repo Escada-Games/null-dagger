@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://resources/tilesAnokolisa/Background_2.png" type="Texture" id=1]
 [ext_resource path="res://resources/tilesAnokolisa/Background_1.png" type="Texture" id=2]
@@ -15,7 +15,8 @@
 [ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=13]
 [ext_resource path="res://scenes/cameraShift/cameraShift.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=16]
+[ext_resource path="res://resources/Props/Keyboard_25x19.png" type="Texture" id=16]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=17]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ParallaxLayer
@@ -150,10 +151,84 @@ func _on_area2D_body_entered(body):
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 112, 40 )
 
+[sub_resource type="GDScript" id=10]
+script/source = "extends Area2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$sprite.modulate.a=0
+	$sprite.position.y=50
+
+
+func _on_guideMoveRight_body_entered(body):
+	if body.is_in_group(\"Player\"):
+		$twnAlpha.interpolate_property($sprite,\"modulate:a\",$sprite.modulate.a,1,1.5,Tween.TRANS_EXPO,Tween.EASE_OUT)
+		$twnAlpha.interpolate_property($sprite,\"position:y\",$sprite.position.y,0,1.5,Tween.TRANS_BACK,Tween.EASE_OUT)
+		$twnAlpha.start()
+		$collisionShape2D.disabled=true
+"
+
+[sub_resource type="Animation" id=12]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 25, 37 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 3 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 262, 37 )
+
 [node name="1" type="Node2D"]
 
 [node name="parallaxBackground" type="ParallaxBackground" parent="."]
-editor/display_folded = true
 
 [node name="bgFar" type="ParallaxLayer" parent="parallaxBackground"]
 position = Vector2( 27, 24 )
@@ -223,6 +298,7 @@ tile_data = PoolIntArray( 1114140, 0, 0, 1441824, 0, 0, 1441825, 0, 0, 1507358, 
 script = ExtResource( 9 )
 
 [node name="deathZone" type="StaticBody2D" parent="objects"]
+editor/display_folded = true
 position = Vector2( 954, 994 )
 z_index = 999
 script = ExtResource( 10 )
@@ -268,6 +344,7 @@ script = ExtResource( 13 )
 [node name="mirrors" type="Node2D" parent="objects"]
 
 [node name="cameraShifts" type="Node2D" parent="objects"]
+editor/display_folded = true
 
 [node name="cameraShift" parent="objects/cameraShifts" instance=ExtResource( 14 )]
 position = Vector2( 681, 127 )
@@ -280,6 +357,7 @@ rotation = -3.14159
 newOffset = Vector2( 0, 30 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
+editor/display_folded = true
 position = Vector2( -9, 0 )
 z_index = 1
 
@@ -337,13 +415,70 @@ editor/display_folded = true
 position = Vector2( 1033, 709 )
 
 [node name="transition" type="Area2D" parent="objects"]
+editor/display_folded = true
 position = Vector2( 1559, 1728 )
 script = SubResource( 8 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/transition"]
 shape = SubResource( 9 )
 
-[node name="player" parent="." instance=ExtResource( 16 )]
+[node name="guideMoveRight" type="Area2D" parent="objects"]
+position = Vector2( 122, 195 )
+script = SubResource( 10 )
+
+[node name="sprite" type="Sprite" parent="objects/guideMoveRight"]
+texture = ExtResource( 16 )
+hframes = 4
+
+[node name="twnAlpha" type="Tween" parent="objects/guideMoveRight"]
+
+[node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveRight"]
+autoplay = "idle"
+anims/idle = SubResource( 12 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveRight"]
+position = Vector2( 0, 45 )
+shape = SubResource( 11 )
+
+[node name="guideMoveUp" type="Area2D" parent="objects"]
+position = Vector2( 232, 195 )
+script = SubResource( 10 )
+
+[node name="sprite" type="Sprite" parent="objects/guideMoveUp"]
+texture = ExtResource( 16 )
+hframes = 4
+
+[node name="twnAlpha" type="Tween" parent="objects/guideMoveUp"]
+
+[node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveUp"]
+autoplay = "idle"
+anims/idle = SubResource( 13 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveUp"]
+position = Vector2( 0, 45 )
+shape = SubResource( 11 )
+
+[node name="guideMoveLeft" type="Area2D" parent="objects"]
+position = Vector2( 720, 314 )
+script = SubResource( 10 )
+
+[node name="sprite" type="Sprite" parent="objects/guideMoveLeft"]
+texture = ExtResource( 16 )
+hframes = 4
+frame = 1
+
+[node name="twnAlpha" type="Tween" parent="objects/guideMoveLeft"]
+
+[node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveLeft"]
+autoplay = "idle"
+anims/idle = SubResource( 14 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveLeft"]
+position = Vector2( 0, 45 )
+shape = SubResource( 15 )
+
+[node name="player" parent="." instance=ExtResource( 17 )]
+editor/display_folded = true
 position = Vector2( 181, 239 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
@@ -361,6 +496,9 @@ drag_margin_bottom = 0.5
 [node name="twnCamera" type="Tween" parent="player"]
 [connection signal="body_entered" from="objects/deathZone/area2D" to="objects/deathZone" method="_on_area2D_body_entered"]
 [connection signal="body_entered" from="objects/transition" to="objects/transition" method="_on_area2D_body_entered"]
+[connection signal="body_entered" from="objects/guideMoveRight" to="objects/guideMoveRight" method="_on_guideMoveRight_body_entered"]
+[connection signal="body_entered" from="objects/guideMoveUp" to="objects/guideMoveUp" method="_on_guideMoveRight_body_entered"]
+[connection signal="body_entered" from="objects/guideMoveLeft" to="objects/guideMoveLeft" method="_on_guideMoveRight_body_entered"]
 
 [editable path="objects/platformSupports/4"]
 
