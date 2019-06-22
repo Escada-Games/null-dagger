@@ -127,7 +127,7 @@ z_index = 1
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 7143477, 2, 0, 7143478, 2, 0, 7143479, 2, 0, 7143480, 2, 0, 7143481, 2, 0, 7143482, 2, 0, 7143483, 2, 0, 7143484, 2, 0, 7143485, 2, 0, 7143486, 2, 0, 7143487, 2, 0, 7143488, 2, 0, 7143489, 2, 0, 7536699, 13, 0, 7798861, 5, 0 )
+tile_data = PoolIntArray( 7143477, 2, 0, 7143478, 2, 0, 7143479, 2, 0, 7143480, 2, 0, 7143481, 2, 0, 7143482, 2, 0, 7143483, 2, 0, 7143484, 2, 0, 7143485, 2, 0, 7143486, 2, 0, 7143487, 2, 0, 7143488, 2, 0, 7536699, 13, 0, 7798861, 5, 0 )
 script = ExtResource( 9 )
 
 [node name="mirrors" type="Node2D" parent="objects"]
@@ -139,7 +139,6 @@ position = Vector2( 1239, 1887 )
 newOffset = Vector2( 30, 60 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
-editor/display_folded = true
 
 [node name="support" parent="objects/platformSupports" instance=ExtResource( 11 )]
 position = Vector2( 864, 1749 )
@@ -204,7 +203,7 @@ position = Vector2( 0, 45 )
 shape = SubResource( 7 )
 
 [node name="guideMoveRMB" type="Area2D" parent="objects"]
-position = Vector2( 1634, 1905 )
+position = Vector2( 1614, 1905 )
 script = SubResource( 5 )
 
 [node name="sprite" type="Sprite" parent="objects/guideMoveRMB"]

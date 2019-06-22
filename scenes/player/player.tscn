@@ -311,7 +311,7 @@ shape = SubResource( 6 )
 position = Vector2( 33, 0 )
 rotation = 1.57079
 scale = Vector2( 0.75, 0.75 )
-z_index = 4096
+z_index = 4095
 texture = ExtResource( 9 )
 
 [node name="tmrToUnglitch" type="Timer" parent="."]
