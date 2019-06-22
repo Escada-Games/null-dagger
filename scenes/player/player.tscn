@@ -5,10 +5,10 @@
 [ext_resource path="res://resources/Char/charDaggerSpritesheetShaded.png" type="Texture" id=3]
 [ext_resource path="res://resources/Char/Char_SmearBug.png" type="Texture" id=4]
 [ext_resource path="res://resources/Props/Cursor.png" type="Texture" id=5]
-[ext_resource path="res://scenes/pauseManager/pauseManager.gd" type="Script" id=6]
-[ext_resource path="res://resources/sfx/landing.wav" type="AudioStream" id=7]
-[ext_resource path="res://resources/sfx/jumping.wav" type="AudioStream" id=8]
-[ext_resource path="res://resources/sfx/grabAltered.wav" type="AudioStream" id=9]
+[ext_resource path="res://resources/sfx/landing.wav" type="AudioStream" id=6]
+[ext_resource path="res://resources/sfx/jumping.wav" type="AudioStream" id=7]
+[ext_resource path="res://resources/sfx/grabAltered.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/pauseManager/pauseManager.gd" type="Script" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -202,18 +202,6 @@ texture = ExtResource( 5 )
 [node name="tmrToUnglitch" type="Timer" parent="."]
 one_shot = true
 
-[node name="canvasModulate" type="ColorRect" parent="."]
-pause_mode = 2
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -278.0
-margin_top = -368.0
-margin_right = 850.0
-margin_bottom = 562.0
-color = Color( 0, 0, 0, 0.670588 )
-script = ExtResource( 6 )
-
 [node name="control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -225,21 +213,36 @@ margin_right = 513.0
 margin_bottom = 290.0
 
 [node name="sfxJump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 6 )
 bus = "sfx"
 
 [node name="sfxLanding" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 7 )
 volume_db = -5.0
 bus = "sfx"
 
 [node name="sfxGrabbing" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 8 )
 volume_db = -5.0
 bus = "sfx"
 
 [node name="tmrRespawn" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="pauseLayer" type="Sprite" parent="."]
+z_index = 4096
+
+[node name="pauseManager" type="ColorRect" parent="pauseLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -278.0
+margin_top = -368.0
+margin_right = 850.0
+margin_bottom = 562.0
+color = Color( 0, 0, 0, 0.670588 )
+script = ExtResource( 9 )
 [connection signal="timeout" from="tmrToUnglitch" to="." method="_on_tmrToUnglitch_timeout"]
 [connection signal="timeout" from="tmrRespawn" to="." method="_on_tmrRespawn_timeout"]
