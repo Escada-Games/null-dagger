@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/tilesets/tilesetGenericSolids.tres" type="TileSet" id=2]
@@ -10,9 +10,8 @@
 [ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/stages/5.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/door/door.gd" type="Script" id=11]
-[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=12]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=11]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=12]
 
 [node name="4" type="Node2D"]
 
@@ -50,6 +49,7 @@ script = ExtResource( 7 )
 [node name="cameraShifts" type="Node2D" parent="objects"]
 
 [node name="platformSupports" type="Node2D" parent="objects"]
+editor/display_folded = true
 position = Vector2( 176, 1408 )
 
 [node name="support" parent="objects/platformSupports" instance=ExtResource( 8 )]
@@ -104,18 +104,15 @@ connectedStage = ExtResource( 10 )
 [node name="sprite" parent="objects/door" index="0"]
 flip_h = true
 
-[node name="doorSpr" type="Area2D" parent="objects"]
+[node name="doorSprite" type="Sprite" parent="objects"]
 position = Vector2( 337, 1660 )
-script = ExtResource( 11 )
-
-[node name="sprite" type="Sprite" parent="objects/doorSpr"]
-scale = Vector2( 1.33333, 2 )
-texture = ExtResource( 12 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
 flip_h = true
 hframes = 2
 frame = 1
 
-[node name="player" parent="." instance=ExtResource( 13 )]
+[node name="player" parent="." instance=ExtResource( 12 )]
 position = Vector2( 337, 1660 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
@@ -130,7 +127,5 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.5
 
 [node name="twnCamera" type="Tween" parent="player"]
-[connection signal="body_entered" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_entered"]
-[connection signal="body_exited" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_exited"]
 
 [editable path="objects/door"]

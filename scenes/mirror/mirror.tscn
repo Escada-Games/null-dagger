@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/mirror/mirror.gd" type="Script" id=1]
-[ext_resource path="res://resources/AssetsTst.png" type="Texture" id=2]
+[ext_resource path="res://resources/Props/Mirror_5x16.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
-extents = Vector2( 4, 8 )
+extents = Vector2( 4, 16 )
 
 [node name="mirror" type="Area2D"]
 script = ExtResource( 1 )
@@ -14,9 +14,7 @@ script = ExtResource( 1 )
 modulate = Color( 1, 1, 1, 0.66 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
-vframes = 5
-hframes = 5
-frame = 8
+hframes = 2
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

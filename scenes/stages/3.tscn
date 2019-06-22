@@ -71,7 +71,7 @@ connectedStage = ExtResource( 10 )
 
 [node name="doorSprite" type="Sprite" parent="objects"]
 position = Vector2( 194, 361 )
-scale = Vector2( 1.33333, 2 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 11 )
 flip_h = true
 hframes = 2

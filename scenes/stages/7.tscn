@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
 [ext_resource path="res://resources/tilesets/tilesetGenericSolids.tres" type="TileSet" id=2]
@@ -9,9 +9,8 @@
 [ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=7]
 [ext_resource path="res://scenes/mirror/mirror.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/door/door.gd" type="Script" id=10]
-[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=11]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=10]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -76,18 +75,15 @@ shape = SubResource( 1 )
 [node name="door" parent="objects" instance=ExtResource( 9 )]
 position = Vector2( 576, 151 )
 
-[node name="doorSpr" type="Area2D" parent="objects"]
+[node name="doorSprite" type="Sprite" parent="objects"]
 position = Vector2( 573, 1832 )
-script = ExtResource( 10 )
-
-[node name="sprite" type="Sprite" parent="objects/doorSpr"]
-scale = Vector2( 1.33333, 2 )
-texture = ExtResource( 11 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
 flip_h = true
 hframes = 2
 frame = 1
 
-[node name="player" parent="." instance=ExtResource( 12 )]
+[node name="player" parent="." instance=ExtResource( 11 )]
 position = Vector2( 573, 1832 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
@@ -103,8 +99,6 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.5
 
 [node name="twnCamera" type="Tween" parent="player"]
-[connection signal="body_entered" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_entered"]
-[connection signal="body_exited" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_exited"]
 
 [editable path="objects/mirrors/mirror"]
 
