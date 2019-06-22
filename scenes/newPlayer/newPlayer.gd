@@ -35,6 +35,7 @@ var spawnCheckpoint=preload("res://scenes/checkpoint/checkpoint.tscn")
 var checkpoint
 
 func _ready():
+	$camera2D.zoom=Vector2(0.8,0.8)
 #	OS.window_size*=2
 	self.hasDagger=global.hasDagger
 	$glitchAim.visible=false
@@ -69,7 +70,6 @@ func _physics_process(delta):
 	
 	if self.is_on_floor():
 		if numberOfJumps>0:
-			print('adsasd')
 			$sfxLanding.pitch_scale=rand_range(0.95,1.05)
 			$sfxLanding.play()
 		jumpBuffer=0
@@ -97,6 +97,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_lmb") and daggerCount>0 and hasDagger:
 		var i=glitchDagger.instance()
 		i.global_position=self.global_position#$glitchAim.global_position
+#		i.position=self.position
 		i.direction=$glitchAim.position.normalized()
 		i.returnTo=self
 		i.add_collision_exception_with(self)

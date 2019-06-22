@@ -1,16 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
-[ext_resource path="res://resources/tilesets/debugTileset.tres" type="TileSet" id=2]
-[ext_resource path="res://scenes/tilemapTiler/tileMap.gd" type="Script" id=3]
-[ext_resource path="res://resources/tilesets/debugTilesetSpikes.tres" type="TileSet" id=4]
-[ext_resource path="res://scenes/tilemapTiler/tileMapSpike.gd" type="Script" id=5]
-[ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=6]
-[ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=7]
-[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/door/door.gd" type="Script" id=9]
-[ext_resource path="res://icon.png" type="Texture" id=10]
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://resources/tilesets/debugTilesetSpikes.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/tilemapTiler/tileMapSpike.gd" type="Script" id=3]
+[ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=4]
+[ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=5]
+[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/door/door.gd" type="Script" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=9]
 
 [node name="4" type="Node2D"]
 
@@ -21,23 +19,17 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
-[node name="tileMap" type="TileMap" parent="objects"]
+[node name="tileMapSpike" type="TileMap" parent="objects"]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 script = ExtResource( 3 )
 
-[node name="tileMapSpike" type="TileMap" parent="objects"]
+[node name="tileMapObjects" type="TileMap" parent="objects"]
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 format = 1
 script = ExtResource( 5 )
-
-[node name="tileMapObjects" type="TileMap" parent="objects"]
-tile_set = ExtResource( 6 )
-cell_size = Vector2( 16, 16 )
-format = 1
-script = ExtResource( 7 )
 
 [node name="mirrors" type="Node2D" parent="objects"]
 
@@ -45,20 +37,20 @@ script = ExtResource( 7 )
 
 [node name="platformSupports" type="Node2D" parent="objects"]
 
-[node name="door" parent="objects" instance=ExtResource( 8 )]
+[node name="door" parent="objects" instance=ExtResource( 6 )]
 position = Vector2( -84, 98 )
 
 [node name="doorSpr" type="Area2D" parent="objects"]
 position = Vector2( 155, 246 )
-script = ExtResource( 9 )
+script = ExtResource( 7 )
 
 [node name="sprite" type="Sprite" parent="objects/doorSpr"]
 position = Vector2( 3.8147e-06, 0.5 )
 scale = Vector2( 0.4375, 0.765625 )
 z_index = -1
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
 
-[node name="player" parent="." instance=ExtResource( 11 )]
+[node name="player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 278, 203 )
 
 [node name="camera2D" type="Camera2D" parent="player"]

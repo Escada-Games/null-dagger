@@ -16,7 +16,7 @@ func _physics_process(delta):
 		self.global_position.y=lerp(self.global_position.y,targetPosition.y,0.05)
 
 func _on_key_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and self.state!="stateFollow":
 		self.state="stateFollow"
 		$collisionShape2D.disabled=true
 		$sfx.play()

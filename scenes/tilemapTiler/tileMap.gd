@@ -19,28 +19,40 @@ func _ready():
 					var south_tile = 1 if get_cell(x,y+1) != INVALID_CELL else 0
 					var tile_index = 0 + North * north_tile + West * west_tile + East * east_tile + South * south_tile
 					
-					var i=spikeSolid.instance()
-					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
-					i.mode=1
-					i.spriteProperties[0]=tilemapTexture
-					i.spriteProperties[1]=Vector2(1,1)
-					i.spriteProperties[2]=5
-					i.spriteProperties[3]=4
 					if tile_index!=15:
-						i.spriteProperties[4]=tile_index
-					else:
-						if randf()>0.98:
-							i.spriteProperties[4]=tile_index+3
+						set_cell(x,y,tile_index,false,false,true)
+						var i=spikeSolid.instance()
+						i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
+						i.mode=1
+						i.spriteProperties[0]=tilemapTexture
+						i.spriteProperties[1]=Vector2(1,1)
+						i.spriteProperties[2]=5
+						i.spriteProperties[3]=4
+						if tile_index!=15:
+							i.spriteProperties[4]=tile_index
 						else:
-						 i.spriteProperties[4]=tile_index+(randi()%3)
-					get_parent().add_child(i)
-					get_parent().call_deferred("add_child",i)
-					
+							if randf()>0.98:
+								i.spriteProperties[4]=tile_index+3
+							else:
+							 i.spriteProperties[4]=tile_index+(randi()%3)
+						get_parent().add_child(i)
+						get_parent().call_deferred("add_child",i)
+					else:
+						var offset=0
+						if randf()>0.98:
+							offset=3
+						else:
+							offset=(randi()%3)
+						self.set_cell(x,y,tile_index+offset)
+		for x in range(-1,grid_size.x):
+			for y in range(-1,grid_size.y):
+				if get_cell(x,y)!=INVALID_CELL:
+					if is_cell_transposed(x,y):set_cell(x,y,-1)
 					
 		print('Tilemap for Spikes: Autotiling done!')
 		print('Tilemap for Spikes: Deleting myself so that only the individual tiles can remain.')
-		self.queue_free()
-
+#		self.queue_free()
+func glitch():pass
 #extends TileMap
 ##Reusing Diver Down's autotiling code here
 #var grid_size=Vector2(250,160)#global.resolution/global.tileSize#Vector2(25,16)
