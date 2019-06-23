@@ -28,7 +28,7 @@ var daggerCount=1
 var hasDagger=false
 
 var onDoor=false
-
+var defaultOffset=Vector2()
 export (bool) var controllable=true
 
 var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
@@ -58,6 +58,13 @@ func _ready():
 #	getDagger()
 
 func _physics_process(delta):
+	if self.hasDagger:
+		var newOffset=defaultOffset+0.2*(get_global_mouse_position()-self.global_position)
+		$camera2D.offset.x=lerp($camera2D.offset.x,newOffset.x,0.1)
+		$camera2D.offset.y=lerp($camera2D.offset.y,newOffset.y,0.1)
+	else:
+		$camera2D.offset.x=lerp($camera2D.offset.x,defaultOffset.x,0.1)
+		$camera2D.offset.y=lerp($camera2D.offset.y,defaultOffset.y,0.1)
 	if Input.is_action_just_pressed('ui_mute'):
 		var masterIndex=AudioServer.get_bus_index("Master")
 		AudioServer.set_bus_mute(masterIndex,!AudioServer.is_bus_mute(AudioServer.get_bus_index("Master")))

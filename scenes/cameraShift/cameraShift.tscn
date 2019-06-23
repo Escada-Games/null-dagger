@@ -9,6 +9,7 @@ func _on_cameraShift_body_entered(body):
 	if body.is_in_group(\"Player\"):
 		body.get_node(\"twnCamera\").interpolate_property(body.get_node(\"camera2D\"),\"offset\",body.get_node(\"camera2D\").offset,newOffset,tweenDuration,Tween.TRANS_EXPO,Tween.EASE_OUT)
 		body.get_node(\"twnCamera\").start()
+		body.defaultOffset=newOffset
 		self.queue_free()"
 
 [sub_resource type="RectangleShape2D" id=2]
