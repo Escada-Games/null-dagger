@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/545trees.ogg-a44a6188e51a50dbae7690643b9795f5.oggstr"
+
+[deps]
+
+source_file="res://resources/sfx/545trees.ogg"
+dest_files=[ "res://.import/545trees.ogg-a44a6188e51a50dbae7690643b9795f5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
