@@ -20,6 +20,6 @@ func changeScene(scene):
 		self.add_child(k)
 	elif j.name=="8":
 		$musicGlitchy.fadeOut()
-	j.free()s
+	j.free()
 	get_tree().get_root().add_child(i)
 	

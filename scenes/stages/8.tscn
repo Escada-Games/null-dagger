@@ -21,8 +21,7 @@ func _on_area2D_body_entered(body):
 	if body.is_in_group(\"Player\"):
 		$sprite.visible=true
 		body.set_physics_process(false)
-		global.changeScene(nextScreen)
-"
+		global.changeScene(nextScreen)"
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 284, 391 )
