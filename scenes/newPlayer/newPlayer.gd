@@ -58,6 +58,10 @@ func _ready():
 #	getDagger()
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed('ui_mute'):
+		var masterIndex=AudioServer.get_bus_index("Master")
+		AudioServer.set_bus_mute(masterIndex,!AudioServer.is_bus_mute(AudioServer.get_bus_index("Master")))
+	
 #	print(ProjectSettings.get_setting("display:mouse_cursor:custom_image"))
 	if anim=="getDagger":
 		if anim!=$animationPlayer.current_animation:$animationPlayer.play(anim)
