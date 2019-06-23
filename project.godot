@@ -15,10 +15,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="themeIsGlitch"
-run/main_scene="res://scenes/stages/1.tscn"
+config/name="Null Dagger"
+run/main_scene="res://scenes/firstScreen.tscn"
 boot_splash/image="res://resources/EscadaSplash.png"
-config/icon="res://icon.png"
+config/icon="res://resources/icon.png"
 
 [autoload]
 
