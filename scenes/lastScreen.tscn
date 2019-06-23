@@ -6,11 +6,12 @@
 script/source = "extends Control
 var nextScreen=load(\"res://scenes/stages/1.tscn\")
 func _ready():
-	$marginContainer/label.percent_visible=0
-	$marginContainer/label2.modulate.a=0
+#	$marginContainer/label.percent_visible=0
+	$marginContainer/label2.percent_visible=0
+	$marginContainer/label2.modulate.a=1
 	set_physics_process(true)
 func _physics_process(delta):
-	$marginContainer/label2.percent_visible+=delta/10
+	$marginContainer/label2.percent_visible+=delta/5
 #	$marginContainer/label.percent_visible+=delta/5
 #	if $marginContainer/label.percent_visible>=1:
 #		$marginContainer/label2.modulate.a+=delta
@@ -22,7 +23,7 @@ func _physics_process(delta):
 #		global.changeScene(nextScreen)
 #		self.set_physics_process(false)"
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
 [node name="control" type="Control"]
@@ -50,7 +51,7 @@ margin_right = 502.0
 margin_bottom = 278.0
 size_flags_horizontal = 9
 size_flags_vertical = 8
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "To be continued...?"
 align = 2
 valign = 1
