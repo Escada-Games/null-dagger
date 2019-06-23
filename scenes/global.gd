@@ -4,6 +4,7 @@ var growingDiamond=preload("res://scenes/growingDiamond/growingDiamond.tscn")
 var shrinkingDiamond=preload("res://scenes/shrinkingDiamond/shrinkingDiamond.tscn")
 var hasDagger=false
 var musicCalm=preload("res://scenes/musicCalm.tscn")
+var musicGlitchy=preload("res://scenes/musicGlitchy.tscn")
 func _ready():
 	var i=musicCalm.instance()
 	self.add_child(i)
@@ -14,5 +15,9 @@ func changeScene(scene):
 	var j=scene.instance()
 	if j.name=="2":
 		$musicCalm.fadeOut()
+	elif j.name=="3":
+		var k=musicGlitchy.instance()
+		self.add_child(k)
 	j.free()
 	get_tree().get_root().add_child(i)
+	

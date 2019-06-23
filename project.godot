@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="themeIsGlitch"
 run/main_scene="res://scenes/stages/1.tscn"
+boot_splash/image="res://resources/EscadaSplash.png"
 config/icon="res://icon.png"
 
 [autoload]

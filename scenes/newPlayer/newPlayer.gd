@@ -41,6 +41,11 @@ func _ready():
 	$camera2D.zoom=Vector2(0.8,0.8)
 #	OS.window_size*=2
 	self.hasDagger=global.hasDagger
+	if self.hasDagger:
+		$sprite.visible=false
+		$spriteWithDagger.visible=true
+		$glitchAim.visible=true
+		glitchABit=false
 	$glitchAim.visible=false
 	self.add_to_group("Unglitchable")
 	self.add_to_group("Player")
