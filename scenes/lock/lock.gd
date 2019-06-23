@@ -1,6 +1,7 @@
 extends StaticBody2D
 var cyanGhost=preload("res://scenes/ghosts/cyanGhost.tscn")
 var magentaGhost=preload("res://scenes/ghosts/magentaGhost.tscn")
+var isLocked=true
 func _ready():
 	self.add_to_group("Solid")
 	self.add_to_group("Lock")
@@ -38,4 +39,6 @@ func deactivate():
 	self.set_collision_layer_bit(0,false)
 	self.set_collision_mask_bit(0,false)
 
-func open():get_parent().unlock()
+func open():
+	self.isLocked=false
+	get_parent().unlock()
