@@ -4,7 +4,7 @@
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
-var nextScreen=load(\"res://scenes/stages/1.tscn\")
+var nextScreen=preload(\"res://scenes/stages/1.tscn\")
 func _ready():
 	$marginContainer/label.percent_visible=0
 	$marginContainer/label2.modulate.a=0
@@ -17,7 +17,7 @@ func _physics_process(delta):
 		$marginContainer/label.percent_visible=1
 		$marginContainer/label2.modulate.a=1
 	
-	if $marginContainer/label.percent_visible>=1 and $marginContainer/label2.modulate.a>=1 and Input.is_action_just_pressed('ui_lmb'):
+	if $marginContainer/label.percent_visible>=0.9 and $marginContainer/label2.modulate.a>=0.9:
 		global.changeScene(nextScreen)
 		self.set_physics_process(false)"
 
@@ -69,7 +69,7 @@ margin_bottom = 278.0
 size_flags_horizontal = 9
 size_flags_vertical = 8
 custom_fonts/font = SubResource( 3 )
-text = "Left mouse button to contrinue.
+text = "Left mouse button to continue.
 "
 align = 2
 valign = 1

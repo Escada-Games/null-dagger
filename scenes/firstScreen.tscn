@@ -4,7 +4,7 @@
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
-var nextScreen=load(\"res://scenes/secondScreen.tscn\")
+var nextScreen=preload(\"res://scenes/secondScreen.tscn\")
 func _ready():
 	$marginContainer/label.percent_visible=0
 	$marginContainer/label2.modulate.a=0
@@ -68,7 +68,7 @@ margin_bottom = 278.0
 size_flags_horizontal = 9
 size_flags_vertical = 8
 custom_fonts/font = SubResource( 3 )
-text = "Left mouse button to contrinue.
+text = "Left mouse button to continue.
 "
 align = 2
 valign = 1

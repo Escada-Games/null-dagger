@@ -9,10 +9,10 @@
 [ext_resource path="res://resources/tilesets/tilesetGenericSolidGrass.tres" type="TileSet" id=7]
 [ext_resource path="res://resources/tilesets/debugTilesetSpikes.tres" type="TileSet" id=8]
 [ext_resource path="res://scenes/tilemapTiler/tileMapSpike.gd" type="Script" id=9]
-[ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=10]
-[ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=11]
-[ext_resource path="res://scenes/genericSpike/genericSpike.gd" type="Script" id=12]
-[ext_resource path="res://resources/tileset_autotile3.png" type="Texture" id=13]
+[ext_resource path="res://scenes/genericSpike/genericSpike.gd" type="Script" id=10]
+[ext_resource path="res://resources/tileset_autotile3.png" type="Texture" id=11]
+[ext_resource path="res://resources/tilesets/debugTilesetObjects.tres" type="TileSet" id=12]
+[ext_resource path="res://scenes/tilemapTiler/tileMapPlantMushroom.gd" type="Script" id=13]
 [ext_resource path="res://scenes/cameraShift/cameraShift.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/support/support.tscn" type="PackedScene" id=15]
 [ext_resource path="res://resources/Props/Keyboard_25x19.png" type="Texture" id=16]
@@ -40,11 +40,10 @@ var grid_size=Vector2(1000,1000)#global.resolution/global.tileSize#Vector2(25,16
 var North = 1; var West = 2; var East = 4; var South = 8
 
 var tilemapTexture=self.tile_set.tile_get_texture(0)
-var spikeSolid=preload(\"res://scenes/spike-solid/spike-solid.tscn\")
+var spikeSolid=load(\"res://scenes/spike-solid/spike-solid.tscn\")
 
 
 func _ready():
-#	var spikeSolid=load(\"res://scenes/spike-solid/spike-solid.tscn\")
 	self.z_index=50
 	print('Tilemap: Beginning autotile...')
 	for x in range(-1,grid_size.x):
@@ -320,25 +319,17 @@ format = 1
 tile_data = PoolIntArray( 1114140, 0, 0, 1441824, 0, 0, 1441825, 0, 0, 1507358, 0, 0, 1507360, 0, 0, 1507361, 0, 0, 1572894, 0, 0, 1638427, 0, 0, 1703963, 0, 0, 1900582, 0, 0, 1900583, 0, 0, 1900584, 0, 0, 1900585, 0, 0, 1966118, 0, 0, 1966119, 0, 0, 1966120, 0, 0, 1966121, 0, 0, 3014695, 0, 0, 3014696, 0, 0, 3014697, 0, 0, 3014698, 0, 0, 3080231, 0, 0, 3080232, 0, 0, 3080233, 0, 0, 3080234, 0, 0 )
 script = ExtResource( 9 )
 
-[node name="tileMapObjects" type="TileMap" parent="objects"]
-z_index = 5
-tile_set = ExtResource( 10 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( 786466, 5, 0, 983076, 1, 0, 983077, 1, 0, 983078, 1, 0, 2228253, 2, 0, 2228254, 2, 0, 2228255, 2, 0, 2228256, 2, 0, 2621466, 2, 0, 2621467, 2, 0, 2621468, 2, 0, 2621469, 2, 0, 2621470, 2, 0, 2621475, 5, 0, 2687027, 3, 0, 2687028, 3, 0, 2687029, 3, 0, 2687030, 3, 0, 2687031, 3, 0, 2687032, 3, 0, 2687033, 3, 0, 2687034, 3, 0, 2687035, 3, 0, 2687036, 2, 0, 2687037, 2, 0, 2752557, 0, 0, 2752558, 0, 0, 2818095, 1, 0, 2818096, 1, 0, 2883647, 2, 0, 2883648, 2, 0, 2883649, 2, 0, 2883650, 2, 0, 2883651, 2, 0, 2883652, 2, 0, 2949153, 0, 0, 2949198, 5, 0, 3014742, 8, 0, 3080260, 2, 0, 3080261, 2, 0, 3080262, 2, 0, 3080263, 2, 0, 3080264, 2, 0, 3080265, 2, 0, 3080266, 2, 0, 3145784, 6, 0, 3211327, 2, 0, 3211328, 2, 0, 3211329, 2, 0, 3211330, 2, 0, 3211331, 2, 0, 3211332, 2, 0, 3342390, 2, 0, 3342391, 2, 0, 3342392, 2, 0, 3342393, 2, 0, 3342394, 2, 0, 3342395, 2, 0, 3342396, 2, 0, 3342397, 2, 0, 3342398, 2, 0 )
-script = ExtResource( 11 )
-
 [node name="deathZone" type="StaticBody2D" parent="objects"]
 editor/display_folded = true
 position = Vector2( 954, 994 )
 z_index = 999
-script = ExtResource( 12 )
+script = ExtResource( 10 )
 
 [node name="sprite" type="Sprite" parent="objects/deathZone"]
 visible = false
 position = Vector2( 4.5, 4 )
 scale = Vector2( 11.3906, 5.1875 )
-texture = ExtResource( 13 )
+texture = ExtResource( 11 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/deathZone"]
 position = Vector2( 0, 6 )
@@ -363,6 +354,14 @@ margin_bottom = 3565.0
 rect_rotation = -89.9999
 texture = SubResource( 7 )
 expand = true
+
+[node name="tileMapObjects" type="TileMap" parent="objects"]
+z_index = 5
+tile_set = ExtResource( 12 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 786466, 5, 0, 983076, 1, 0, 983077, 1, 0, 983078, 1, 0, 2228253, 2, 0, 2228254, 2, 0, 2228255, 2, 0, 2228256, 2, 0, 2621466, 2, 0, 2621467, 2, 0, 2621468, 2, 0, 2621469, 2, 0, 2621470, 2, 0, 2621475, 5, 0, 2687027, 3, 0, 2687028, 3, 0, 2687029, 3, 0, 2687030, 3, 0, 2687031, 3, 0, 2687032, 3, 0, 2687033, 3, 0, 2687034, 3, 0, 2687035, 3, 0, 2687036, 2, 0, 2687037, 2, 0, 2752557, 0, 0, 2752558, 0, 0, 2818095, 1, 0, 2818096, 1, 0, 2883647, 2, 0, 2883648, 2, 0, 2883649, 2, 0, 2883650, 2, 0, 2883651, 2, 0, 2883652, 2, 0, 2949153, 0, 0, 2949198, 5, 0, 3014742, 8, 0, 3080260, 2, 0, 3080261, 2, 0, 3080262, 2, 0, 3080263, 2, 0, 3080264, 2, 0, 3080265, 2, 0, 3080266, 2, 0, 3145784, 6, 0, 3211327, 2, 0, 3211328, 2, 0, 3211329, 2, 0, 3211330, 2, 0, 3211331, 2, 0, 3211332, 2, 0, 3342390, 2, 0, 3342391, 2, 0, 3342392, 2, 0, 3342393, 2, 0, 3342394, 2, 0, 3342395, 2, 0, 3342396, 2, 0, 3342397, 2, 0, 3342398, 2, 0 )
+script = ExtResource( 13 )
 
 [node name="mirrors" type="Node2D" parent="objects"]
 
@@ -438,6 +437,7 @@ editor/display_folded = true
 position = Vector2( 1033, 709 )
 
 [node name="transition" type="Area2D" parent="objects"]
+editor/display_folded = true
 position = Vector2( 1559, 1728 )
 script = SubResource( 8 )
 
@@ -483,6 +483,7 @@ position = Vector2( 0, 45 )
 shape = SubResource( 12 )
 
 [node name="guideMoveLeft" type="Area2D" parent="objects"]
+editor/display_folded = true
 position = Vector2( 720, 314 )
 script = SubResource( 14 )
 
@@ -501,6 +502,7 @@ position = Vector2( 0, 45 )
 shape = SubResource( 16 )
 
 [node name="player" parent="." instance=ExtResource( 17 )]
+editor/display_folded = true
 position = Vector2( 122, -58 )
 controllable = false
 

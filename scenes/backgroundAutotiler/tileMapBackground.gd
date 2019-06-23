@@ -5,12 +5,12 @@ var grid_size=Vector2(175,175)#global.resolution/global.tileSize#Vector2(25,16)
 var North = 1; var West = 2; var East = 4; var South = 8
 
 var tilemapTexture=self.tile_set.tile_get_texture(0)
-var spikeSolid=preload("res://scenes/spike-solid/spike-solid.tscn")
+#var spikeSolid=load("res://scenes/spike-solid/spike-solid.tscn")
 
 
 func _ready():
 	self.z_index=-10
-	print('Tilemap: Beginning autotile...')
+#	print('Tilemap: Beginning autotile...')
 	for x in range(-1,grid_size.x):
 		for y in range(-1,grid_size.y):
 			if get_cell(x,y)!=INVALID_CELL:
@@ -51,8 +51,8 @@ func _ready():
 #			if get_cell(x,y)!=INVALID_CELL:
 #				if is_cell_transposed(x,y):set_cell(x,y,-1)
 					
-	print('Tilemap for Spikes: Autotiling done!')
-	print('Tilemap for Spikes: Deleting myself so that only the individual tiles can remain.')
+#	print('Tilemap for Spikes: Autotiling done!')
+#	print('Tilemap for Spikes: Deleting myself so that only the individual tiles can remain.')
 #		self.queue_free()
 func glitch():pass
 #extends TileMap

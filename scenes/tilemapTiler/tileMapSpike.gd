@@ -7,6 +7,7 @@ var tilemapTexture=self.tile_set.tile_get_texture(0)
 var spikeSolid=preload("res://scenes/spike-solid/spike-solid.tscn")
 
 func _ready():
+#	var spikeSolid=load("res://scenes/spike-solid/spike-solid.tscn")
 	self.z_index=0
 	print('Tilemap: Beginning autotile...')
 	for x in range(-1,grid_size.x):
@@ -26,6 +27,7 @@ func _ready():
 				i.spriteProperties[2]=4
 				i.spriteProperties[3]=4
 				i.spriteProperties[4]=tile_index
+#				i.frame=tile_index
 				get_parent().call_deferred("add_child",i)
 				
 	print('Tilemap for Spikes: Autotiling done!')

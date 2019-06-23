@@ -15,12 +15,16 @@ collision_mask = 0
 
 [node name="sprite" parent="zero" index="0"]
 texture = ExtResource( 3 )
+vframes = 4
+hframes = 4
 
 [node name="one" parent="." instance=ExtResource( 4 )]
 z_index = 5
 
 [node name="sprite" parent="one" index="0"]
 texture = ExtResource( 5 )
+vframes = 4
+hframes = 4
 
 [editable path="zero"]
 
