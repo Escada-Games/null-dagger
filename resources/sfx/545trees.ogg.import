@@ -12,4 +12,4 @@ dest_files=[ "res://.import/545trees.ogg-a44a6188e51a50dbae7690643b9795f5.oggstr
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=9.6

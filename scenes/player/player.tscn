@@ -351,6 +351,7 @@ z_index = 4096
 
 [node name="pauseManager" type="ColorRect" parent="pauseLayer"]
 pause_mode = 2
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -500.0
@@ -359,18 +360,5 @@ margin_right = 499.0
 margin_bottom = 499.0
 color = Color( 0, 0, 0, 0.670588 )
 script = ExtResource( 14 )
-
-[node name="twnLabelPos" type="Tween" parent="pauseLayer/pauseManager"]
-
-[node name="marginCtn" type="MarginContainer" parent="pauseLayer/pauseManager"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="label" type="Label" parent="pauseLayer/pauseManager/marginCtn"]
-margin_top = 493.0
-margin_right = 1000.0
-margin_bottom = 507.0
-text = "Game Paused"
-align = 1
 [connection signal="timeout" from="tmrToUnglitch" to="." method="_on_tmrToUnglitch_timeout"]
 [connection signal="timeout" from="tmrRespawn" to="." method="_on_tmrRespawn_timeout"]

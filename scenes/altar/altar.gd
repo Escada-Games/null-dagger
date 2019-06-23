@@ -7,7 +7,7 @@ func _ready():
 func _physics_process(delta):
 	for body in $area2D.get_overlapping_bodies():
 		if body.is_in_group("glitchDaggerItem"):
-			$sprite.frame=1 if randf()<0.8 else 0
+			$sprite.frame=1# if randf()<0.8 else 0
 			return
 	$sprite.frame=0
 #	set_physics_process(false)

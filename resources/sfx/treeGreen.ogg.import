@@ -12,4 +12,4 @@ dest_files=[ "res://.import/treeGreen.ogg-67d35c9a75caaf0bae274815d07ee693.oggst
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=4.8
