@@ -1,1 +1,2 @@
-# Glitchhop on git boiii
+# NULL DAGGER
+## A game made for the Godot Wild jam #10
