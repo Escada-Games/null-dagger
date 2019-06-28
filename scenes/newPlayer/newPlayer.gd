@@ -31,7 +31,7 @@ var onDoor=false
 var defaultOffset=Vector2()
 export (bool) var controllable=true
 
-var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
+#var glitchAura=preload("res://scenes/glitchAura/glitchAura.tscn")
 var glitchDagger=preload("res://scenes/glitchDagger/glitchDagger.tscn")
 
 var spawnCheckpoint=preload("res://scenes/checkpoint/checkpoint.tscn")

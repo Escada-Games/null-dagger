@@ -1,9 +1,9 @@
 extends TileMap
 #Reusing Diver Down's autotiling code here, with some...adaptations
 var grid_size=Vector2(175,175)#global.resolution/global.tileSize#Vector2(25,16)
-var North = 1; var West = 2; var East = 4; var South = 8
+#var North = 1; var West = 2; var East = 4; var South = 8
 
-var tilemapTexture=self.tile_set.tile_get_texture(0)
+#var tilemapTexture=self.tile_set.tile_get_texture(0)
 var plantMushroom=preload("res://scenes/plant-mushroom/plant-mushroom.tscn")
 var doublePlatform=preload("res://scenes/double-platform/double-platform.tscn")
 var mirror=preload("res://scenes/mirror/mirror.tscn")
