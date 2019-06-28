@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/spike-platform/spike-platform.gd" type="Script" id=1]
 [ext_resource path="res://scenes/genericSpike/genericSpike.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/tilesetAutotileSpikes.png" type="Texture" id=3]
 [ext_resource path="res://scenes/genericSolid/genericSolid.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/tilesetAutotileStones4x4.png" type="Texture" id=5]
 
 [node name="spike-solid" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,11 +19,6 @@ hframes = 4
 
 [node name="one" parent="." instance=ExtResource( 4 )]
 z_index = 5
-
-[node name="sprite" parent="one" index="0"]
-texture = ExtResource( 5 )
-vframes = 4
-hframes = 4
 
 [editable path="zero"]
 

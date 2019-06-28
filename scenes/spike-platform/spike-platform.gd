@@ -1,5 +1,6 @@
 extends Node2D
 export (int) var mode=0
+var isGrass=false
 var spriteProperties=[	Texture.new(),	#Texture
 						Vector2(1,1),		#Scale
 						0,				#Vframes
@@ -8,6 +9,9 @@ var spriteProperties=[	Texture.new(),	#Texture
 ]
 
 func _ready():
+	if isGrass:
+		$one/sprite.queue_free()
+		$one/spriteGrass.name="sprite"
 	for node in get_children():
 		node.get_node('sprite').scale=self.spriteProperties[1]
 		node.get_node('sprite').vframes=self.spriteProperties[2]

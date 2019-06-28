@@ -12,8 +12,11 @@ const LockSolid=10; const SolidLock=11;
 const SolidCheckpoint=12
 const GlitchDaggerItem=13
 const Prop=14
+const Grass=15
 
 var tilemapTexture=load("res://resources/tilesetAutotileStones4x4.png")
+var tilemapGrassTexture=load("res://resources/tilesetAutotileGrass4x4.png")
+
 #var tilemapTexture=self.tile_set.tile_get_texture(0)
 var spikeSolid=preload("res://scenes/spike-solid/spike-solid.tscn")
 
@@ -37,7 +40,7 @@ func _ready():
 	print('Tilemap Main: Spawning objects...')
 	for x in range(-1,grid_size.x):
 		for y in range(-1,grid_size.y):
-			if not get_cell(x,y) in [Solid,Spike]:
+			if not get_cell(x,y) in [Solid,Spike,Grass]:
 				var tileIndex=self.get_cell(x,y)
 				if tileIndex in [Mushroom,Plant]:
 					var i=plantMushroom.instance()
@@ -114,7 +117,9 @@ func _ready():
 				if tile_index!=15:
 					var i=spikeSolid.instance()
 					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
-					i.mode=1 if get_cell(x,y)==Solid else 0
+					i.mode=1 if get_cell(x,y) in [Solid,Grass] else 0
+					if get_cell(x,y)==Grass:
+						i.isGrass=true
 					i.spriteProperties[0]=tilemapTexture
 					i.spriteProperties[1]=Vector2(1,1)
 					i.spriteProperties[2]=4
