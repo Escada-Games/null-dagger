@@ -1,5 +1,5 @@
 extends Area2D
-var player
+#var player
 var underPlayer=false
 export (PackedScene) var connectedStage=load("res://scenes/stageTest.tscn")
 func _ready():set_physics_process(true)

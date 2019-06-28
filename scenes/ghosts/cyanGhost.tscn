@@ -3,7 +3,7 @@
 [sub_resource type="GDScript" id=1]
 resource_name = "cyanGhost.gd"
 script/source = "extends Sprite
-var initialPosition=self.global_position
+#var initialPosition=self.global_position
 func _ready():
 	self.modulate=Color(\"cc00ffff\")#Color(\"cc00cfff\")
 	$twnMove.interpolate_property(self,\"global_position\",self.global_position-Vector2(rand_range(5,25),rand_range(-5,5)),self.global_position,rand_range(2.25,25.75),Tween.TRANS_ELASTIC,Tween.EASE_OUT)

@@ -1,11 +1,11 @@
 extends Node2D
 export (int) var mode=0
-var spriteProperties=[	Texture.new(),	#Texture
-						Vector2(),		#Scale
-						0,				#Vframes
-						0,				#Hframes
-						0				#Frame
-]
+#var spriteProperties=[	Texture.new(),	#Texture
+#						Vector2(),		#Scale
+#						0,				#Vframes
+#						0,				#Hframes
+#						0				#Frame
+#]
 
 func _ready():
 	if self.mode==0:
