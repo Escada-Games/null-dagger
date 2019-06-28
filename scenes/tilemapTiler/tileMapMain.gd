@@ -34,7 +34,7 @@ var tallGrass=preload("res://scenes/tallGrass/tallGrass.tscn")
 
 func _ready():
 #	self.z_index=15
-	print('Tilemap Main: Beginning to spawn objects...')
+	print('Tilemap Main: Spawning objects...')
 	for x in range(-1,grid_size.x):
 		for y in range(-1,grid_size.y):
 			if not get_cell(x,y) in [Solid,Spike]:
@@ -100,7 +100,8 @@ func _ready():
 					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
 					get_parent().call_deferred("add_child",i)
 					set_cell(x,y,INVALID_CELL)
-
+	print("Tileset Main: Done spawning objects.")
+	print('Tilemap Main: Spawning and autotiling the tileset and spikes...')
 	for x in range(-1,grid_size.x):
 		for y in range(-1,grid_size.y):
 			if get_cell(x,y)!=INVALID_CELL:
@@ -119,16 +120,7 @@ func _ready():
 					i.spriteProperties[2]=4
 					i.spriteProperties[3]=4
 					i.spriteProperties[4]=tile_index
-#					i.frame=tile_index
-#						if tile_index!=15:
-#							i.spriteProperties[4]=tile_index
-#						else:
-#							if randf()>0.98:
-#								i.spriteProperties[4]=tile_index+3
-#							else:
-#							 i.spriteProperties[4]=tile_index+(randi()%3)
 					set_cell(x,y,tile_index,false,false,true)
-#					get_parent().add_child(i)
 					get_parent().call_deferred("add_child",i)
 				else:
 					randomize()
@@ -138,116 +130,13 @@ func _ready():
 					else: 
 						offset=1+(randi()%2) #TODO: Fix this messy fix
 					self.set_cell(x,y,tile_index+offset)
-
-#			if get_cell(x,y) in [0,1]: #Autotiling for solids and spikes
-			
-#				var northTile=1 if get_cell(x,y-1) in [0,1] else 0
-#				var westTile=1 if get_cell(x-1,y) in [0,1] else 0
-#				var eastTile=1 if get_cell(x+1,y) in [0,1] else 0
-#				var southTile=1 if get_cell(x,y+1) in [0,1] else 0
-#				var tileIndex=0 + North*northTile + West*westTile + East*eastTile + South*southTile
-
-#				var northTile=1 if get_cell(x,y-1)!=INVALID_CELL else 0
-#				var westTile=1 if get_cell(x-1,y)!=INVALID_CELL else 0
-#				var eastTile=1 if get_cell(x+1,y)!=INVALID_CELL else 0
-#				var southTile=1 if get_cell(x,y+1)!=INVALID_CELL else 0
-#				var tileIndex=0 + North*northTile + West*westTile + East*eastTile + South*southTile
-
-#				print(tileIndex)
-##				self.set_cell(x,y,tileIndex)
-#
-#				if tileIndex!=15:
-#					var i=spikeSolid.instance()
-#					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
-#					i.mode=1
-#					i.spriteProperties[0]=tilemapTexture
-#					i.spriteProperties[1]=Vector2(1,1)
-#					i.spriteProperties[2]=4
-#					i.spriteProperties[3]=4
-#					i.spriteProperties[4]=tileIndex
-#					set_cell(x,y,tileIndex,false,false,true)
-##					get_parent().add_child(i)
-#					get_parent().call_deferred("add_child",i)
-#				else:
-#					set_cell(x,y,15)
-#			elif get_cell(x,y)==1:
-##			if get_cell(x,y) in [0,1]: #Autotiling for solids and spikes
-#
-#				var northTile=1 if get_cell(x,y-1) in [0,1] else 0
-#				var westTile=1 if get_cell(x-1,y) in [0,1] else 0
-#				var eastTile=1 if get_cell(x+1,y) in [0,1] else 0
-#				var southTile=1 if get_cell(x,y+1) in [0,1] else 0
-#				var tileIndex=0 + North*northTile + West*westTile + East*eastTile + South*southTile
-#
-##				var northTile=1 if get_cell(x,y-1)!=INVALID_CELL else 0
-##				var westTile=1 if get_cell(x-1,y)!=INVALID_CELL else 0
-##				var eastTile=1 if get_cell(x+1,y)!=INVALID_CELL else 0
-##				var southTile=1 if get_cell(x,y+1)!=INVALID_CELL else 0
-##				var tileIndex=0 + North*northTile + West*westTile + East*eastTile + South*southTile
-##				print(tileIndex)
-##				self.set_cell(x,y,tileIndex)
-#
-#				if tileIndex!=15:
-#					var i=spikeSolid.instance()
-#					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
-#					i.mode=0
-#					i.spriteProperties[0]=tilemapTexture
-#					i.spriteProperties[1]=Vector2(1,1)
-#					i.spriteProperties[2]=4
-#					i.spriteProperties[3]=4
-#					i.spriteProperties[4]=tileIndex
-#					set_cell(x,y,tileIndex,false,false,true)
-##					get_parent().add_child(i)
-#					get_parent().call_deferred("add_child",i)
-#				self.set_cell(x,y,tileIndex)
-#				var northTile=1 if get_cell(x,y-1)!=INVALID_CELL else 0
-#				var westTile=1 if get_cell(x-1,y)!=INVALID_CELL else 0
-#				var eastTile=1 if get_cell(x+1,y)!=INVALID_CELL else 0
-#				var southTile=1 if get_cell(x,y+1)!=INVALID_CELL else 0
-#				var tileIndex=0 + North*northTile + West*westTile + East*eastTile + South*southTile
-#				self.set_cell(x,y,tileIndex)
-
-#			elif get_cell(x,y)!=INVALID_CELL:
-#				var north_tile = 1 if get_cell(x,y-1) != INVALID_CELL else 0
-#				var west_tile = 1 if get_cell(x-1,y) != INVALID_CELL else 0
-#				var east_tile = 1 if get_cell(x+1,y) != INVALID_CELL else 0
-#				var south_tile = 1 if get_cell(x,y+1) != INVALID_CELL else 0
-#				var tile_index = 0 + North * north_tile + West * west_tile + East * east_tile + South * south_tile
-#
-#				if tile_index!=15:
-#					set_cell(x,y,tile_index,false,false,true)
-#					var i=spikeSolid.instance()
-#					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
-#					i.mode=1
-#					i.spriteProperties[0]=tilemapTexture
-#					i.spriteProperties[1]=Vector2(1,1)
-#					i.spriteProperties[2]=4
-#					i.spriteProperties[3]=4
-#					i.spriteProperties[4]=tile_index
-##					i.frame=tile_index
-##						if tile_index!=15:
-##							i.spriteProperties[4]=tile_index
-##						else:
-##							if randf()>0.98:
-##								i.spriteProperties[4]=tile_index+3
-##							else:
-##							 i.spriteProperties[4]=tile_index+(randi()%3)
-#					get_parent().add_child(i)
-#					get_parent().call_deferred("add_child",i)
-#				else:
-#					var offset=0
-#					if randf()>0.98:
-#						offset=3
-#					else:
-#						offset=(randi()%3)
-#					self.set_cell(x,y,tile_index+offset)
-
+	print("Tileset Main: Done spawning the tileset and spikes.")
+	print("Tileset Main: Deleting helper tiles...")
 	for x in range(-1,grid_size.x):
 		for y in range(-1,grid_size.y):
 			if get_cell(x,y)!=INVALID_CELL:
 				if is_cell_transposed(x,y):
 					set_cell(x,y,-1)
-					
-	print('Tilemap for Spikes: Autotiling done!')
-	print('Tilemap for Spikes: Deleting myself so that only the individual tiles can remain.')
+	print("Tileset Main: Done.")
+	print("Tileset Main: Finished all processes.")
 func glitch():pass
