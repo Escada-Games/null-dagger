@@ -7,6 +7,7 @@ export(Texture) var texture
 export var tileSize = Vector2(16, 16)
 export var tiles_to_map = Vector2(0, 0)
 export var generate = false
+export (bool) var createStaticBody=true
 export(Script) var gen_script
 
 func _process(delta):
@@ -34,13 +35,12 @@ func _process(delta):
 					spr.region_enabled = true
 					spr.region_rect = Rect2(pos, tileSize)
 					spr.set_script(gen_script)
-					
-					var sb2d = StaticBody2D.new()
-					var cs2d = CollisionShape2D.new()
-					cs2d.shape = RectangleShape2D.new()
-					cs2d.shape.extents = tileSize/2
-					
-					sb2d.add_child(cs2d)
-					spr.add_child(sb2d)
+					if createStaticBody:
+						var sb2d = StaticBody2D.new()
+						var cs2d = CollisionShape2D.new()
+						cs2d.shape = RectangleShape2D.new()
+						cs2d.shape.extents = tileSize/2
+						sb2d.add_child(cs2d)
+						spr.add_child(sb2d)
 					add_child(spr)
 					spr.set_owner(own)
