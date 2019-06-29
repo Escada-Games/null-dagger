@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Null Dagger"
+config/name="Null Dagger - Jam Version"
 run/main_scene="res://scenes/firstScreen.tscn"
 boot_splash/image="res://resources/EscadaSplash.png"
 config/icon="res://resources/icon.png"

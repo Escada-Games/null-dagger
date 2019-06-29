@@ -22,6 +22,7 @@ func _on_key_body_entered(body):
 
 func _on_range_body_entered(body):
 	if self.state=="stateFollow" and body.is_in_group("Lock"):
-		body.open()
-		$sfx.play()
-		$animationPlayer.play("unlock")
+		if body.isLocked:
+			body.open()
+			$sfx.play()
+			$animationPlayer.play("unlock")
