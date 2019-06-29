@@ -1,19 +1,20 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/newPlayer/newPlayer.gd" type="Script" id=1]
 [ext_resource path="res://resources/Char/charNoDaggerSpritesheetShaded.png" type="Texture" id=2]
-[ext_resource path="res://resources/Char/charDaggerSpritesheetShaded.png" type="Texture" id=3]
-[ext_resource path="res://resources/Char/Char_SmearBug.png" type="Texture" id=4]
-[ext_resource path="res://resources/Char/Char_Looooot.png" type="Texture" id=5]
-[ext_resource path="res://resources/AssetsTst2.png" type="Texture" id=6]
-[ext_resource path="res://resources/circleForShader2.png" type="Texture" id=7]
-[ext_resource path="res://resources/circleForShader.png" type="Texture" id=8]
-[ext_resource path="res://resources/Props/Cursor.png" type="Texture" id=9]
-[ext_resource path="res://resources/sfx/landing.wav" type="AudioStream" id=10]
-[ext_resource path="res://resources/sfx/jumping.wav" type="AudioStream" id=11]
-[ext_resource path="res://resources/sfx/grabAltered.wav" type="AudioStream" id=12]
-[ext_resource path="res://resources/sfx/dead.wav" type="AudioStream" id=13]
-[ext_resource path="res://scenes/pauseManager/pauseManager.gd" type="Script" id=14]
+[ext_resource path="res://resources/Char/charNoDaggerSpritesheetShadedNM.png" type="Texture" id=3]
+[ext_resource path="res://resources/Char/charDaggerSpritesheetShaded.png" type="Texture" id=4]
+[ext_resource path="res://resources/Char/Char_SmearBug.png" type="Texture" id=5]
+[ext_resource path="res://resources/Char/Char_Looooot.png" type="Texture" id=6]
+[ext_resource path="res://resources/AssetsTst2.png" type="Texture" id=7]
+[ext_resource path="res://resources/circleForShader2.png" type="Texture" id=8]
+[ext_resource path="res://resources/circleForShader.png" type="Texture" id=9]
+[ext_resource path="res://resources/Props/Cursor.png" type="Texture" id=10]
+[ext_resource path="res://resources/sfx/landing.wav" type="AudioStream" id=11]
+[ext_resource path="res://resources/sfx/jumping.wav" type="AudioStream" id=12]
+[ext_resource path="res://resources/sfx/grabAltered.wav" type="AudioStream" id=13]
+[ext_resource path="res://resources/sfx/dead.wav" type="AudioStream" id=14]
+[ext_resource path="res://scenes/pauseManager/pauseManager.gd" type="Script" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "getDagger"
@@ -238,7 +239,7 @@ void fragment() {
 shader = SubResource( 7 )
 shader_param/aberrationAmountX = 0.0
 shader_param/aberrationAmountY = 0.0
-shader_param/mask_texture = ExtResource( 7 )
+shader_param/mask_texture = ExtResource( 8 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 6, 10 )
@@ -259,6 +260,7 @@ anims/walkcycle = SubResource( 6 )
 position = Vector2( 2, -2.5 )
 z_index = 1
 texture = ExtResource( 2 )
+normal_map = ExtResource( 3 )
 vframes = 4
 hframes = 8
 frame = 26
@@ -266,7 +268,8 @@ frame = 26
 [node name="spriteWithDagger" type="Sprite" parent="."]
 visible = false
 position = Vector2( 2, -2.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
+normal_map = ExtResource( 3 )
 vframes = 4
 hframes = 8
 frame = 26
@@ -274,19 +277,19 @@ frame = 26
 [node name="spriteGlitched" type="Sprite" parent="."]
 visible = false
 position = Vector2( 2, -2.5 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 hframes = 6
 
 [node name="spriteGetDagger" type="Sprite" parent="."]
 visible = false
 position = Vector2( 2, -2.5 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="spriteDagger" type="Sprite" parent="spriteGetDagger"]
 position = Vector2( 2.38419e-07, -10.5 )
 rotation = 1.57079
 scale = Vector2( 1.5, 2.5 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 vframes = 7
 hframes = 5
 frame = 13
@@ -296,7 +299,7 @@ material = SubResource( 8 )
 position = Vector2( 16, -4.54747e-13 )
 scale = Vector2( 0.4, 0.4 )
 z_index = 4096
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -308,7 +311,7 @@ position = Vector2( 33, 0 )
 rotation = 1.57079
 scale = Vector2( 0.75, 0.75 )
 z_index = 4095
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="tmrToUnglitch" type="Timer" parent="."]
 one_shot = true
@@ -324,21 +327,21 @@ margin_right = 513.0
 margin_bottom = 290.0
 
 [node name="sfxJump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 bus = "sfx"
 
 [node name="sfxLanding" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-volume_db = -5.0
-bus = "sfx"
-
-[node name="sfxGrabbing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = -5.0
 bus = "sfx"
 
-[node name="sfxDead" type="AudioStreamPlayer" parent="."]
+[node name="sfxGrabbing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+volume_db = -5.0
+bus = "sfx"
+
+[node name="sfxDead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
 volume_db = -15.0
 bus = "sfx"
 
@@ -359,6 +362,6 @@ margin_top = -500.0
 margin_right = 499.0
 margin_bottom = 499.0
 color = Color( 0, 0, 0, 0.670588 )
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 [connection signal="timeout" from="tmrToUnglitch" to="." method="_on_tmrToUnglitch_timeout"]
 [connection signal="timeout" from="tmrRespawn" to="." method="_on_tmrRespawn_timeout"]

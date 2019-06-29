@@ -29,30 +29,30 @@ func _physics_process(delta):
 	self.motion_offset.x+=5*delta
 "
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7, 1 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 482, 91 )
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0.84141, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=7]
 script/source = "extends Area2D
 var nextScene=load(\"res://scenes/stages/2.tscn\")
 func _on_area2D_body_entered(body):
 	if body.is_in_group(\"Player\"):
 		global.changeScene(nextScene)"
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 112, 40 )
 
-[sub_resource type="GDScript" id=10]
+[sub_resource type="GDScript" id=9]
 script/source = "extends Area2D
 func _ready():
 	$sprite.modulate.a=0
@@ -65,7 +65,7 @@ func _on_guideMoveRight_body_entered(body):
 		$twnAlpha.start()
 		$collisionShape2D.disabled=true"
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
@@ -81,10 +81,10 @@ tracks/0/keys = {
 "values": [ 0, 2 ]
 }
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 25, 37 )
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
@@ -100,7 +100,7 @@ tracks/0/keys = {
 "values": [ 0, 3 ]
 }
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=13]
 script/source = "extends Area2D
 
 # Declare member variables here. Examples:
@@ -121,7 +121,7 @@ func _on_guideMoveRight_body_entered(body):
 		$collisionShape2D.disabled=true
 "
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=14]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
@@ -137,7 +137,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 262, 37 )
 
 [node name="1" type="Node2D"]
@@ -213,14 +213,14 @@ script = ExtResource( 10 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/deathZone"]
 position = Vector2( 0, 6 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="area2D" type="Area2D" parent="objects/deathZone"]
 position = Vector2( 31, -170 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/deathZone/area2D"]
 position = Vector2( -9, 626 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="twnAlpha" type="Tween" parent="objects/deathZone"]
 
@@ -232,7 +232,7 @@ margin_top = 1499.0
 margin_right = 1174.0
 margin_bottom = 2884.0
 rect_rotation = -89.9999
-texture = SubResource( 7 )
+texture = SubResource( 6 )
 expand = true
 
 [node name="mirrors" type="Node2D" parent="objects"]
@@ -305,15 +305,15 @@ position = Vector2( 1033, 709 )
 [node name="transition" type="Area2D" parent="objects"]
 editor/display_folded = true
 position = Vector2( 1559, 1728 )
-script = SubResource( 8 )
+script = SubResource( 7 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/transition"]
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="guideMoveRight" type="Area2D" parent="objects"]
 editor/display_folded = true
 position = Vector2( 122, 170 )
-script = SubResource( 10 )
+script = SubResource( 9 )
 
 [node name="sprite" type="Sprite" parent="objects/guideMoveRight"]
 texture = ExtResource( 13 )
@@ -323,16 +323,16 @@ hframes = 4
 
 [node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveRight"]
 autoplay = "idle"
-anims/idle = SubResource( 11 )
+anims/idle = SubResource( 10 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveRight"]
 position = Vector2( 0, 45 )
-shape = SubResource( 12 )
+shape = SubResource( 11 )
 
 [node name="guideMoveUp" type="Area2D" parent="objects"]
 editor/display_folded = true
 position = Vector2( 232, 196 )
-script = SubResource( 10 )
+script = SubResource( 9 )
 
 [node name="sprite" type="Sprite" parent="objects/guideMoveUp"]
 texture = ExtResource( 13 )
@@ -342,16 +342,16 @@ hframes = 4
 
 [node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveUp"]
 autoplay = "idle"
-anims/idle = SubResource( 13 )
+anims/idle = SubResource( 12 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveUp"]
 position = Vector2( 0, 45 )
-shape = SubResource( 12 )
+shape = SubResource( 11 )
 
 [node name="guideMoveLeft" type="Area2D" parent="objects"]
 editor/display_folded = true
 position = Vector2( 720, 314 )
-script = SubResource( 14 )
+script = SubResource( 13 )
 
 [node name="sprite" type="Sprite" parent="objects/guideMoveLeft"]
 texture = ExtResource( 13 )
@@ -361,11 +361,11 @@ hframes = 4
 
 [node name="animationPlayer" type="AnimationPlayer" parent="objects/guideMoveLeft"]
 autoplay = "idle"
-anims/idle = SubResource( 15 )
+anims/idle = SubResource( 14 )
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="objects/guideMoveLeft"]
 position = Vector2( 0, 45 )
-shape = SubResource( 16 )
+shape = SubResource( 15 )
 
 [node name="player" parent="." instance=ExtResource( 14 )]
 editor/display_folded = true

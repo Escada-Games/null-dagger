@@ -1,7 +1,7 @@
 extends Node2D
 export (int) var mode=0
 var isGrass=false
-var spriteProperties=[	Texture.new(),	#Texture
+var spriteProperties=[	0,#Texture.new(),	#Texture
 						Vector2(1,1),		#Scale
 						0,				#Vframes
 						0,				#Hframes

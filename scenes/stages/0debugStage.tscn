@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/backgroundAutotiler/tileMapBackground.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/door/door.gd" type="Script" id=6]
 [ext_resource path="res://icon.png" type="Texture" id=7]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resources/circleForShader1.png" type="Texture" id=9]
 
 [node name="4" type="Node2D"]
 
@@ -55,7 +56,7 @@ z_index = -1
 texture = ExtResource( 7 )
 
 [node name="player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 278, 203 )
+position = Vector2( 310, 213 )
 
 [node name="camera2D" type="Camera2D" parent="player"]
 current = true
@@ -69,5 +70,11 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.5
 
 [node name="twnCamera" type="Tween" parent="player"]
+
+[node name="light2D" type="Light2D" parent="."]
+position = Vector2( 325, 213 )
+texture = ExtResource( 9 )
+texture_scale = 2.0
+shadow_enabled = true
 [connection signal="body_entered" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_entered"]
 [connection signal="body_exited" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_exited"]
