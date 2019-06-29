@@ -39,7 +39,7 @@ func _ready():
 #								i.spriteProperties[4]=tile_index+3
 #							else:
 #							 i.spriteProperties[4]=tile_index+(randi()%3)
-					get_parent().add_child(i)
+#					get_parent().add_child(i)
 					get_parent().call_deferred("add_child",i)
 				else:
 					var offset=0

@@ -11,7 +11,7 @@ func _ready():
 			var i=diamond.instance()
 			i.global_position=Vector2(x,y)*OS.window_size/10
 			i.tweenDuration=self.tweenDuration
-			add_child(i)
+			self.call_deferred("add_child",i)
 #	yield(get_tree().create_timer(1.5*tweenDuration),"timeout")
 #	var errorOnSceneChange=get_tree().change_scene_to(scene)
 #	print("Global: Scene change error, " + str(errorOnSceneChange))
@@ -22,6 +22,7 @@ func _ready():
 
 func fadeOutDone():
 	if not changingSceneAlready:
+		print("Scene changer: Changing the scene now...")
 		changingSceneAlready=true
 		var errorOnSceneChange=get_tree().change_scene_to(scene)
 		print("Scene changer: Scene change error, " + str(errorOnSceneChange))
@@ -29,4 +30,5 @@ func fadeOutDone():
 		for child in self.get_children():
 			child.shrink()
 func fadeInDone():
+	print("Scene changer: Scene change done, deleting self now.")
 	self.queue_free()
