@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/tilesets/tilesetBG.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/backgroundAutotiler/tileMapBackground.gd" type="Script" id=2]
+[ext_resource path="res://resources/tilesets/tilesetMain.tres" type="TileSet" id=3]
+[ext_resource path="res://scenes/tilemapTiler/tileMapMain.gd" type="Script" id=4]
+[ext_resource path="res://scenes/door/door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/door/door.gd" type="Script" id=6]
+[ext_resource path="res://resources/Props/Gate_21x25.png" type="Texture" id=7]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=8]
+
+[node name="4" type="Node2D"]
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="tileMapBBG" type="TileMap" parent="objects"]
+modulate = Color( 0.398438, 0.398438, 0.398438, 1 )
+z_index = -15
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="tileMapBG" type="TileMap" parent="objects"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 2 )
+
+[node name="tileMapMain" type="TileMap" parent="objects"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 4 )
+
+[node name="mirrors" type="Node2D" parent="objects"]
+
+[node name="cameraShifts" type="Node2D" parent="objects"]
+
+[node name="platformSupports" type="Node2D" parent="objects"]
+
+[node name="door" parent="objects" instance=ExtResource( 5 )]
+position = Vector2( -84, 98 )
+
+[node name="doorSpr" type="Area2D" parent="objects"]
+position = Vector2( 155, 246 )
+script = ExtResource( 6 )
+
+[node name="sprite" type="Sprite" parent="objects/doorSpr"]
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 7 )
+hframes = 2
+
+[node name="player" parent="." instance=ExtResource( 8 )]
+position = Vector2( 278, 203 )
+
+[node name="camera2D" type="Camera2D" parent="player"]
+current = true
+limit_left = 0
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 12.0
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.5
+
+[node name="twnCamera" type="Tween" parent="player"]
+[connection signal="body_entered" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_entered"]
+[connection signal="body_exited" from="objects/doorSpr" to="objects/doorSpr" method="_on_door_body_exited"]

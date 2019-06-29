@@ -9,14 +9,20 @@ var spriteProperties=[	Texture.new(),	#Texture
 ]
 
 func _ready():
-	if isGrass:
-		$one/sprite.queue_free()
-		$one/spriteGrass.name="sprite"
 	for node in get_children():
 		node.get_node('sprite').scale=self.spriteProperties[1]
 		node.get_node('sprite').vframes=self.spriteProperties[2]
 		node.get_node('sprite').hframes=self.spriteProperties[3]
 		node.get_node('sprite').frame=self.spriteProperties[4]
+	if isGrass:
+		$one/sprite.queue_free()
+		$one/spriteGrass.scale=self.spriteProperties[1]
+		$one/spriteGrass.vframes=self.spriteProperties[2]
+		$one/spriteGrass.hframes=self.spriteProperties[3]
+		$one/spriteGrass.frame=self.spriteProperties[4]
+	else:
+		$one/spriteGrass.queue_free()
+		
 	if self.mode==0:
 		$zero.activate()
 		$one.deactivate()

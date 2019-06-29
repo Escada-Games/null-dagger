@@ -51,7 +51,7 @@ func _ready():
 				elif tileIndex in [PlatformWood,PlatformStone]:
 					var i=doublePlatform.instance()
 					i.global_position=self.map_to_world(Vector2(x,y))+(self.cell_size/2)
-					i.mode=0 if self.get_cell(x,y)==3 else 1
+					i.mode=0 if self.get_cell(x,y)==PlatformStone else 1
 					get_parent().call_deferred("add_child",i)
 					set_cell(x,y,INVALID_CELL)
 				elif tileIndex in [Mirror]:
